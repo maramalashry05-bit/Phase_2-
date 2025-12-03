@@ -1,7 +1,7 @@
 #include "AddANDgate2.h"
 #include "..\ApplicationManager.h"
 
-AddANDgate2::AddANDgate2(ApplicationManager *pApp):Action(pApp)
+AddANDgate2::AddANDgate2(ApplicationManager *pApp):Action(pApp), Cx(0), Cy(0), x1(0), y1(0), x2(0), y2(0)
 {
 }
 

@@ -127,6 +127,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actions\AddANDgate2.cpp" />
+    <ClCompile Include="AddANDgate3.cpp" />
+    <ClCompile Include="AddConnection.cpp" />
+    <ClCompile Include="AddNANDgate2.cpp" />
+    <ClCompile Include="AddNANDgate3.cpp" />
+    <ClCompile Include="AND3.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\image.cpp" />
@@ -173,10 +178,17 @@
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NAND2.cpp" />
+    <ClCompile Include="NAND3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\AddANDgate2.h" />
+    <ClInclude Include="AddANDgate3.h" />
+    <ClInclude Include="AddConnection.h" />
+    <ClInclude Include="AddNANDgate2.h" />
+    <ClInclude Include="AddNANDgate3.h" />
+    <ClInclude Include="AND3.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />
@@ -209,6 +221,8 @@
     <ClInclude Include="GUI\Input.h" />
     <ClInclude Include="GUI\Output.h" />
     <ClInclude Include="GUI\UI_Info.h" />
+    <ClInclude Include="NAND2.h" />
+    <ClInclude Include="NAND3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
