@@ -3,6 +3,7 @@
 #include "AddANDgate3.h"
 #include "AddNANDgate2.h"
 #include "AddNANDgate3.h"
+#include "SelectAction.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -22,7 +23,19 @@ void ApplicationManager::AddComponent(Component* pComp)
 	CompList[CompCount++] = pComp;		
 }
 ////////////////////////////////////////////////////////////////////
+void ApplicationManager::unselectAll() {
+	for (int i = 0; i < CompCount; i++) {
+		CompList[i]->Setselected(false);
+	}
+}
 
+Component* ApplicationManager::GetComponentAt(int x, int y) {
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i]->IsInside(x, y))
+			return CompList[i];
+	}
+	return NULL;
+}
 
 
 ActionType ApplicationManager::GetUserAction()
@@ -55,7 +68,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			//TODO: Create AddConection Action here
 			break;
 	
-
+		case SELECT:
+			pAct = new SelectAction(this);
+			break;
 		case EXIT:
 			///TODO: create ExitAction here
 			break;
@@ -86,6 +101,20 @@ Input* ApplicationManager::GetInput()
 Output* ApplicationManager::GetOutput()
 {
 	return OutputInterface;
+}
+Component* ApplicationManager::Getcomponent(int index)
+{
+	for (int i; i < CompCount; i++)
+	{
+		if (i == index)
+		{
+			return(CompList[i]);
+		}
+	}
+}
+int ApplicationManager::GetComponentCount()
+{
+	return CompCount;
 }
 
 ////////////////////////////////////////////////////////////////////

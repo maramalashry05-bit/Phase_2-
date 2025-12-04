@@ -158,6 +158,9 @@
     <ClCompile Include="AddNANDgate3.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="SelectAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -276,6 +279,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="AddNANDgate2.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

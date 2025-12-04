@@ -37,13 +37,15 @@ public:
 
 	//Gets a pointer to Input / Output Object
 	Output* GetOutput();
+	Component* Getcomponent(int index);
+	int GetComponentCount();
 	Input* GetInput();
 
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);
 
-	
-
+	void unselectAll();
+	Component* GetComponentAt(int x, int y);
 	//destructor
 	~ApplicationManager();
 };
