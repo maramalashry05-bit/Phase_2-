@@ -49,3 +49,15 @@ void NAND2::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
 }
+OutputPin* NAND2::GetOutputPin()
+{
+	return &m_OutputPin; // member of type OutputPin
+}
+
+
+InputPin* NAND2::GetInputPin(int n)
+{
+	if (n >= 1 && n <= 2)
+		return &m_InputPins[n - 1]; // m_InputPins[0..1]
+	return nullptr; // invalid index
+}

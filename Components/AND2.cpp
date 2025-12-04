@@ -38,12 +38,25 @@ int AND2::GetOutPinStatus()
 	return m_OutputPin.getStatus();
 }
 
-
 //returns status of Inputpin #n
-int AND2::GetInputPinStatus(int n)	
+int AND2::GetInputPinStatus(int n)
 {
-	return m_InputPins[n-1].getStatus();	//n starts from 1 but array index starts from 0.
+	return m_InputPins[n - 1].getStatus();	//n starts from 1 but array index starts from 0.
 }
+
+OutputPin* AND2::GetOutputPin()
+{
+	return &m_OutputPin; // member of type OutputPin
+}
+
+
+InputPin* AND2::GetInputPin(int n)
+{
+	if (n >= 1 && n <= 2)
+		return &m_InputPins[n - 1]; // m_InputPins[0..1]
+	return nullptr; // invalid index
+}
+
 
 //Set status of an input pin ot HIGH or LOW
 void AND2::setInputPinStatus(int n, STATUS s)

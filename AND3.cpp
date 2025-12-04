@@ -49,3 +49,15 @@ void AND3::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
 }
+OutputPin* AND3::GetOutputPin()
+{
+	return &m_OutputPin; // member of type OutputPin
+}
+
+
+InputPin* AND3::GetInputPin(int n)
+{
+	if (n >= 1 && n <= 2)
+		return &m_InputPins[n - 1]; // m_InputPins[0..1]
+	return nullptr; // invalid index
+}

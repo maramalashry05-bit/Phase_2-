@@ -161,6 +161,9 @@
     <ClCompile Include="SelectAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="AddConnection.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -282,6 +285,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="SelectAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddConnection.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

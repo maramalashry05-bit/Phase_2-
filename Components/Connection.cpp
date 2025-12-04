@@ -19,6 +19,15 @@ void Connection::setDestPin(InputPin *pDstPin)
 InputPin* Connection::getDestPin()
 {	return DstPin;	}
 
+OutputPin* Connection::GetOutputPin()
+{
+	return NULL;
+}
+
+InputPin* Connection::GetInputPin(int n)
+{
+	return NULL;
+}
 
 void Connection::Operate()
 {

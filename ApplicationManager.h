@@ -39,6 +39,7 @@ public:
 	Output* GetOutput();
 	Component* Getcomponent(int index);
 	int GetComponentCount();
+	bool isOverlab(int x1, int y1, int x2, int y2);
 	Input* GetInput();
 
 	//Adds a new component to the list of components

@@ -4,7 +4,7 @@
 #include "AddNANDgate2.h"
 #include "AddNANDgate3.h"
 #include "SelectAction.h"
-
+# include "AddConnection.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -66,6 +66,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case ADD_CONNECTION:
 			//TODO: Create AddConection Action here
+			pAct = new AddConnection(this);
 			break;
 	
 		case SELECT:
@@ -104,7 +105,7 @@ Output* ApplicationManager::GetOutput()
 }
 Component* ApplicationManager::Getcomponent(int index)
 {
-	for (int i; i < CompCount; i++)
+	for (int i=0; i < CompCount; i++)
 	{
 		if (i == index)
 		{
@@ -116,6 +117,22 @@ int ApplicationManager::GetComponentCount()
 {
 	return CompCount;
 }
+
+bool ApplicationManager::isOverlab(int x1, int y1, int x2, int y2)
+{
+	// Loop through all components
+	for (int i = 0; i < CompCount; i++)  // CompCount = number of components
+	{
+		Component* comp = CompList[i];  // your array/list of components
+		GraphicsInfo g = comp->GetGraphicsInfo();
+
+		// Check overlap
+		if (!(x2 < g.x1 || x1 > g.x2 || y2 < g.y1 || y1 > g.y2))
+			return false; // Overlap detected
+	}
+	return true; // No overlap
+}
+
 
 ////////////////////////////////////////////////////////////////////
 
