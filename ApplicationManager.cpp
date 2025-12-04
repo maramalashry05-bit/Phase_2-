@@ -19,21 +19,7 @@ void ApplicationManager::AddComponent(Component* pComp)
 	CompList[CompCount++] = pComp;		
 }
 ////////////////////////////////////////////////////////////////////
-Component* ApplicationManager::GetComponent(int x, int y)
-{
-	for (int i = 0; i < CompCount; i++)
-	{
-		GraphicsInfo g = CompList[i]->GetGraphicsInfo();
 
-		// Check if (x, y) lies inside the component rectangle
-		if (x >= g.x1 && x <= g.x2 &&
-			y >= g.y1 && y <= g.y2)
-		{
-			return CompList[i];
-		}
-	}
-	return nullptr;  // no component found
-}
 
 
 ActionType ApplicationManager::GetUserAction()
