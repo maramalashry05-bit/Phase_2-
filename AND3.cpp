@@ -1,6 +1,6 @@
 #include "AND3.h"
 
-AND3::AND3(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
+AND3::AND3(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(3, r_FanOut)
 {
 	m_GfxInfo.x1 = r_GfxInfo.x1;
 	m_GfxInfo.y1 = r_GfxInfo.y1;
@@ -11,7 +11,7 @@ AND3::AND3(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
 
 void AND3::Operate()
 {
-	//caclulate the output status as the ANDing of the three input pins
+	//caclulate the output status as the NANDing of the three input pins
 	//Add you code here
 	if (GetInputPinStatus(1) == HIGH && GetInputPinStatus(2) == HIGH && GetInputPinStatus(3) == HIGH)
 		m_OutputPin.setStatus(HIGH);
@@ -46,10 +46,4 @@ int AND3::GetInputPinStatus(int n)
 void AND3::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
-}
-
-
-OutputPin* AND3::GetOutputPin()
-{
-	return &m_OutputPin;
 }

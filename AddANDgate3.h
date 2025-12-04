@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _ADD_AND_GATE_H
-#define _ADD_AND_GATE_H
+#ifndef _ADD_AND3_GATE_H
+#define _ADD_AND3_GATE_H
 
 #include "Actions\action.h"
 #include "AND3.h"

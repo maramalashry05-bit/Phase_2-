@@ -4,9 +4,9 @@
 #define _NAND2_H
 #include "Components\Gate.h"
 /*
-  Class AND3
+  Class NAND2
   -----------
-  represent the 3-input AND gate
+  represent the 2-input NAND gate
 */
 
 

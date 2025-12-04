@@ -15,7 +15,4 @@ Gate::Gate(int r_Inputs, int r_FanOut):m_OutputPin(r_FanOut)
 		m_InputPins[i].setComponent(this);
 }
 
-InputPin* Gate::GetInputPin(int index)
-{
-	return &m_InputPins[index];
-}
+

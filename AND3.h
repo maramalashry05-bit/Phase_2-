@@ -1,3 +1,4 @@
+
 #pragma once
 #ifndef _AND3_H
 #define _AND3_H
@@ -21,7 +22,6 @@ public:
 	virtual int GetInputPinStatus(int n);	//returns status of Inputpin # n if SWITCH, return -1
 
 	virtual void setInputPinStatus(int n, STATUS s);	//set status of Inputpin # n, to be used by connection class.
-	
 
 
 };

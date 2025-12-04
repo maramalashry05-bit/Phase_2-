@@ -48,12 +48,4 @@ void AND2::setInputPinStatus(int n, STATUS s)
 	m_InputPins[n-1].setStatus(s);
 }
 
-GraphicsInfo AND2::GetGraphicsInfo() const
-{
-	return GraphicsInfo();
-}
 
-OutputPin* AND2::GetOutputPin()
-{
-	return &m_OutputPin;
-}
