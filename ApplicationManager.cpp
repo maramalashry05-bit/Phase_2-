@@ -1,6 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\AddANDgate2.h"
 #include "AddANDgate3.h"
+#include "AddORgate2.h"	
 #include "AddNANDgate2.h"
 #include "AddNANDgate3.h"
 #include "SelectAction.h"
@@ -63,7 +64,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_NAND_GATE_3:
 			pAct = new AddNANDgate3(this);
 			break;
-
+		case ADD_OR_GATE_2:
+			pAct = new AddORgate2(this);
+			break;
+		
 		case ADD_CONNECTION:
 			//TODO: Create AddConection Action here
 			pAct = new AddConnection(this);

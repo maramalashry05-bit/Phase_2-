@@ -164,6 +164,12 @@
     <ClCompile Include="AddConnection.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="OR2.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AddORgate2.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -288,6 +294,12 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="AddConnection.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="OR2.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AddORgate2.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

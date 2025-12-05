@@ -139,6 +139,7 @@
     <ClCompile Include="AddNANDgate3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="AddORgate2.cpp" />
     <ClCompile Include="AND3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -196,6 +197,7 @@
     <ClCompile Include="NAND3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="OR2.cpp" />
     <ClCompile Include="SelectAction.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +215,7 @@
     <ClInclude Include="AddNANDgate3.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="AddORgate2.h" />
     <ClInclude Include="AND3.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
@@ -256,6 +259,7 @@
     <ClInclude Include="NAND3.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="OR2.h" />
     <ClInclude Include="SelectAction.h" />
   </ItemGroup>
   <ItemGroup>
