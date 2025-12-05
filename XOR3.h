@@ -1,21 +1,22 @@
 #pragma once
-#ifndef _OR2_H
-#define _OR2_H
+#pragma once
+#ifndef _XOR3_H
+#define _XOR3_H
 #include "Components\Gate.h"
 /*
-  Class OR2
+  Class XOR3
   -----------
-  represent the 2-input OR2 gate
+  represent the 3-input XOR3 gate
 */
 
 
 
-class OR2 :public Gate
+class XOR3 :public Gate
 {
 public:
-	OR2(const GraphicsInfo& r_GfxInfo, int r_FanOut);
-	virtual void Operate();	//Calculates the output of the OR2 gate
-	virtual void Draw(Output* pOut);	//Draws 2-input gate
+	XOR3(const GraphicsInfo& r_GfxInfo, int r_FanOut);
+	virtual void Operate();	//Calculates the output of the XOR3 gate
+	virtual void Draw(Output* pOut);	//Draws 3-input gate
 
 	virtual int GetOutPinStatus();	//returns status of outputpin if LED, return -1
 	virtual int GetInputPinStatus(int n);	//returns status of Inputpin # n if SWITCH, return -1

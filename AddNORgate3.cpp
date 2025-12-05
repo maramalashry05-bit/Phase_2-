@@ -1,23 +1,23 @@
-#include "AddORgate2.h"
+#include "AddNORgate3.h"
 #include "ApplicationManager.h"
 
-AddORgate2::AddORgate2(ApplicationManager* pApp)
+AddNORgate3::AddNORgate3(ApplicationManager* pApp)
 	: Action(pApp), Cx(0), Cy(0), x1(0), y1(0), x2(0), y2(0)
 {
 }
 
-AddORgate2::~AddORgate2(void)
+AddNORgate3::~AddNORgate3(void)
 {
 }
 
-void AddORgate2::ReadActionParameters()
+void AddNORgate3::ReadActionParameters()
 {
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
 	//Print Action Message
-	pOut->PrintMsg("2-Input OR2 Gate: Click to add the gate");
+	pOut->PrintMsg("3-Input NOR3 Gate: Click to add the gate");
 
 	//Wait for User Input
 	pIn->GetPointClicked(Cx, Cy);
@@ -27,29 +27,29 @@ void AddORgate2::ReadActionParameters()
 
 }
 
-void AddORgate2::Execute()
+void AddNORgate3::Execute()
 {
 	//Get Center point of the Gate
 	ReadActionParameters();
 
 	//Calculate the rectangle Corners
-	int Len = UI.OR2_Width;
-	int Wdth = UI.OR2_Height;
+	int Len = UI.NOR3_Width;
+	int Wdth = UI.NOR3_Height;
 
-	GraphicsInfo GInfo; //Gfx info to be used to construct the OR2 gate
+	GraphicsInfo GInfo; //Gfx info to be used to construct the NOR2 gate
 
 	GInfo.x1 = Cx - Len / 2;
 	GInfo.x2 = Cx + Len / 2;
 	GInfo.y1 = Cy - Wdth / 2;
 	GInfo.y2 = Cy + Wdth / 2;
-	OR2* pA = new OR2(GInfo, OR2_FANOUT);
+	NOR3* pA = new NOR3(GInfo, NOR3_FANOUT);
 	pManager->AddComponent(pA);
 }
 
-void AddORgate2::Undo()
+void AddNORgate3::Undo()
 {
 }
 
-void AddORgate2::Redo()
+void AddNORgate3::Redo()
 {
 }

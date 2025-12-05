@@ -2,10 +2,15 @@
 #include "Actions\AddANDgate2.h"
 #include "AddANDgate3.h"
 #include "AddORgate2.h"	
+#include "AddORgate3.h"
+#include "AddNORgate2.h"
+#include "AddNORgate3.h"
+#include "AddXORgate2.h"
+#include "AddXORgate3.h"
 #include "AddNANDgate2.h"
 #include "AddNANDgate3.h"
 #include "SelectAction.h"
-# include "AddConnection.h"
+#include "AddConnection.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -54,7 +59,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_AND_GATE_2:
 			pAct= new AddANDgate2(this);	
 			break;
-
 		case ADD_AND_GATE_3:
 			pAct = new AddANDgate3(this);
 			break;
@@ -67,7 +71,22 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_OR_GATE_2:
 			pAct = new AddORgate2(this);
 			break;
-		
+		case ADD_OR_GATE_3:
+			pAct = new AddORgate3(this);
+			break;
+		case ADD_NOR_GATE_2:
+			pAct = new AddNORgate2(this);
+			break;
+		case ADD_NOR_GATE_3:
+			pAct = new AddNORgate3(this);
+			break;
+		case ADD_XOR_GATE_2:
+			pAct = new AddXORgate2(this);
+			break;
+		case ADD_XOR_GATE_3:
+			pAct = new AddXORgate3(this);
+			break;
+
 		case ADD_CONNECTION:
 			//TODO: Create AddConection Action here
 			pAct = new AddConnection(this);

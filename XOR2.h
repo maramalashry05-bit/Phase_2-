@@ -1,20 +1,20 @@
 #pragma once
-#ifndef _OR2_H
-#define _OR2_H
+#ifndef _XOR2_H
+#define _XOR2_H
 #include "Components\Gate.h"
 /*
-  Class OR2
+  Class XOR2
   -----------
-  represent the 2-input OR2 gate
+  represent the 2-input XOR2 gate
 */
 
 
 
-class OR2 :public Gate
+class XOR2 :public Gate
 {
 public:
-	OR2(const GraphicsInfo& r_GfxInfo, int r_FanOut);
-	virtual void Operate();	//Calculates the output of the OR2 gate
+	XOR2(const GraphicsInfo& r_GfxInfo, int r_FanOut);
+	virtual void Operate();	//Calculates the output of the XOR2 gate
 	virtual void Draw(Output* pOut);	//Draws 2-input gate
 
 	virtual int GetOutPinStatus();	//returns status of outputpin if LED, return -1
