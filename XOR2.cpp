@@ -29,7 +29,7 @@ void XOR2::Draw(Output* pOut)
 {
 	//Call output class and pass gate drawing info to it.
 
-	pOut->DrawOR2(m_GfxInfo, isSelected);
+	pOut->DrawXOR2(m_GfxInfo, isSelected);
 
 }
 

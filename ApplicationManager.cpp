@@ -9,6 +9,8 @@
 #include "AddXORgate3.h"
 #include "AddNANDgate2.h"
 #include "AddNANDgate3.h"
+#include "AddXNORgate3.h"
+#include "AddXNORgate2.h"
 #include "SelectAction.h"
 #include "AddConnection.h"
 
@@ -85,6 +87,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case ADD_XOR_GATE_3:
 			pAct = new AddXORgate3(this);
+			break;
+		case ADD_XNOR_GATE_2:
+			pAct = new AddXNORgate2(this);
+			break;
+		case ADD_XNOR_GATE_3:
+			pAct = new AddXNORgate3(this);
 			break;
 
 		case ADD_CONNECTION:

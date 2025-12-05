@@ -142,6 +142,8 @@
     <ClCompile Include="AddNORgate2.cpp" />
     <ClCompile Include="AddNORgate3.cpp" />
     <ClCompile Include="AddORgate2.cpp" />
+    <ClCompile Include="AddXNORgate2.cpp" />
+    <ClCompile Include="AddXNORgate3.cpp" />
     <ClCompile Include="AddXORgate2.cpp" />
     <ClCompile Include="AddXORgate3.cpp" />
     <ClCompile Include="AND3.cpp">
@@ -207,6 +209,8 @@
     <ClCompile Include="AddORgate3.cpp" />
     <ClCompile Include="OR3.cpp" />
     <ClCompile Include="SelectAction.cpp" />
+    <ClCompile Include="XNOR2.cpp" />
+    <ClCompile Include="XNOR3.cpp" />
     <ClCompile Include="XOR2.cpp" />
     <ClCompile Include="XOR3.cpp" />
   </ItemGroup>
@@ -228,6 +232,8 @@
     <ClInclude Include="AddNORgate2.h" />
     <ClInclude Include="AddNORgate3.h" />
     <ClInclude Include="AddORgate2.h" />
+    <ClInclude Include="AddXNORgate2.h" />
+    <ClInclude Include="AddXNORgate3.h" />
     <ClInclude Include="AddXORgate2.h" />
     <ClInclude Include="AddXORgate3.h" />
     <ClInclude Include="AND3.h">
@@ -279,6 +285,8 @@
     <ClInclude Include="AddORgate3.h" />
     <ClInclude Include="OR3.h" />
     <ClInclude Include="SelectAction.h" />
+    <ClInclude Include="XNOR2.h" />
+    <ClInclude Include="XNOR3.h" />
     <ClInclude Include="XOR2.h" />
     <ClInclude Include="XOR3.h" />
   </ItemGroup>
