@@ -90,7 +90,11 @@ ActionType Input::GetUserAction() const
 			case ITM_XNOR2:    return ADD_XNOR_GATE_2;
 			case ITM_XNOR3:    return ADD_XNOR_GATE_3;
 
+				//BUFF , INV
 
+			case ITM_BUFF:		return ADD_BUFF;
+			case ITM_INV:		return ADD_INV;
+			
 				// BASIC COMPONENTS
 			case ITM_SWITCH:        return ADD_Switch;
 			case ITM_LED:           return ADD_LED;

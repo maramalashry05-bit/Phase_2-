@@ -11,7 +11,7 @@ XNOR3::XNOR3(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(3, r_FanOut)
 
 void XNOR3::Operate()
 {
-	//caclulate the output status as the XNOR3ing of the three input pins
+	//caclulate the output status as the XNORing of the three input pins
 	//Add you code here
 	int count = 0;
 	if (GetInputPinStatus(1) == HIGH) count++;

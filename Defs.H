@@ -6,7 +6,7 @@
 //All possible actions
 enum ActionType
 {
-	ADD_Buff,			// Add 1-input Buffer gate
+	ADD_BUFF,			// Add 1-input Buffer gate
 	ADD_INV,			// Add 1-input Inverter gate
 
 	ADD_AND_GATE_2,		// Add 2-input AND gate
@@ -96,6 +96,8 @@ enum DsgnMenuItem //The items of the design menu (you should add more items)
 	ITM_XOR3,           // Add a 3 input XOR gate
 	ITM_XNOR2,          // Add a 2 input XNOR gate
 	ITM_XNOR3,          // Add a 3 input XNOR gate
+	ITM_BUFF,			// Add a Buffer
+	ITM_INV,			// Add an Inverter
 
 	ITM_SWITCH,         // Add a Switch
 	ITM_LED,            // Add a Led    
@@ -153,6 +155,7 @@ enum FANOUT
 	XOR2_FANOUT = 5,
 	XNOR2_FANOUT = 5,
 	AND3_FANOUT = 5,
+	OR3_FANOUT = 5,
 	NAND3_FANOUT = 5,
 	NOR3_FANOUT = 5,
 	XOR3_FANOUT = 5,

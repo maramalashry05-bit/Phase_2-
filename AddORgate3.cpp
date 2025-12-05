@@ -17,7 +17,7 @@ void AddORgate3::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 
 	//Print Action Message
-	pOut->PrintMsg("3-Input OR3 Gate: Click to add the gate");
+	pOut->PrintMsg("3-Input OR Gate: Click to add the gate");
 
 	//Wait for User Input
 	pIn->GetPointClicked(Cx, Cy);
@@ -42,7 +42,7 @@ void AddORgate3::Execute()
 	GInfo.x2 = Cx + Len / 2;
 	GInfo.y1 = Cy - Wdth / 2;
 	GInfo.y2 = Cy + Wdth / 2;
-	OR3* pA = new OR3(GInfo, OR2_FANOUT);
+	OR3* pA = new OR3(GInfo, OR3_FANOUT);
 	pManager->AddComponent(pA);
 }
 

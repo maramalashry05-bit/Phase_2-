@@ -3,9 +3,9 @@
 #define _NOR3_H
 #include "Components\Gate.h"
 /*
-  Class NOR2
+  Class NOR3
   -----------
-  represent the 3-input NOR3 gate
+  represent the 3-input NOR gate
 */
 
 

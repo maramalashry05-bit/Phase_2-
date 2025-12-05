@@ -1,6 +1,6 @@
 #include "XNOR2.h"
 
-XNOR2::XNOR2(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(3, r_FanOut)
+XNOR2::XNOR2(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
 {
 	m_GfxInfo.x1 = r_GfxInfo.x1;
 	m_GfxInfo.y1 = r_GfxInfo.y1;

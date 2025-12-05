@@ -5,7 +5,7 @@
 /*
   Class OR3
   -----------
-  represent the 3-input OR3 gate
+  represent the 3-input OR gate
 */
 
 

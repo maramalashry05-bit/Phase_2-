@@ -5,7 +5,7 @@
 /*
   Class XOR2
   -----------
-  represent the 2-input XOR2 gate
+  represent the 2-input XOR gate
 */
 
 

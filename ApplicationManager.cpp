@@ -11,6 +11,8 @@
 #include "AddNANDgate3.h"
 #include "AddXNORgate3.h"
 #include "AddXNORgate2.h"
+#include "AddBUFFgate.h"
+#include "AddINVgate.h"
 #include "SelectAction.h"
 #include "AddConnection.h"
 
@@ -93,6 +95,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case ADD_XNOR_GATE_3:
 			pAct = new AddXNORgate3(this);
+			break;
+		case ADD_BUFF:
+			pAct = new AddBUFFgate(this);
+			break;
+		case ADD_INV:
+			pAct = new AddINVgate(this);
 			break;
 
 		case ADD_CONNECTION:

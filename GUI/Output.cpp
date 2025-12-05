@@ -113,6 +113,8 @@ void Output::CreateDesignToolBar() const
 	MenuItemImages[ITM_XOR3] = "images\\Menu\\Menu_XOR3.jpg";
 	MenuItemImages[ITM_XNOR2] = "images\\Menu\\Menu_XNOR2.jpg";
 	MenuItemImages[ITM_XNOR3] = "images\\Menu\\Menu_XNOR3.jpg";
+	MenuItemImages[ITM_BUFF] = "images\\Menu\\Menu_BUFF.jpg";
+	MenuItemImages[ITM_INV] = "images\\Menu\\Menu_INV.jpg";
 	MenuItemImages[ITM_SWITCH] = "images\\Menu\\Menu_Switch.jpg";
 	MenuItemImages[ITM_LED] = "images\\Menu\\Menu_Led.jpg";
 	MenuItemImages[ITM_CONNECTION] = "images\\Menu\\Menu_Connection.jpg";

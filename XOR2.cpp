@@ -11,8 +11,6 @@ XOR2::XOR2(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
 
 void XOR2::Operate()
 {
-	
-	
 		// Calculate the output status as the XORing of the two input pins
 		// XOR is true only when inputs are different
 		if (GetInputPinStatus(1) != GetInputPinStatus(2))

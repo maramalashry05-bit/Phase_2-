@@ -17,7 +17,7 @@ void AddORgate2::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 
 	//Print Action Message
-	pOut->PrintMsg("2-Input OR2 Gate: Click to add the gate");
+	pOut->PrintMsg("2-Input OR Gate: Click to add the gate");
 
 	//Wait for User Input
 	pIn->GetPointClicked(Cx, Cy);

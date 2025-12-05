@@ -11,7 +11,7 @@ NOR2::NOR2(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
 
 void NOR2::Operate()
 {
-	//caclulate the output status as the NANDing of the two input pins
+	//caclulate the output status as the NORing of the two input pins
 	//Add you code here
 	if (GetInputPinStatus(1) == LOW && GetInputPinStatus(2) == LOW)
 		m_OutputPin.setStatus(HIGH);

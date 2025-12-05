@@ -5,7 +5,7 @@
 /*
   Class OR2
   -----------
-  represent the 2-input OR2 gate
+  represent the 2-input OR gate
 */
 
 
