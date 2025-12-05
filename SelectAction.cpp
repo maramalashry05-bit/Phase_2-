@@ -41,7 +41,7 @@ void SelectAction::Execute()
     }
     else
     {
-        // Clicked empty area ? deselect all
+        // Clicked empty area ? unselect all
         pManager->unselectAll();
     }
 
