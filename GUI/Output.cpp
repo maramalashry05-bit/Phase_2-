@@ -416,7 +416,7 @@ void Output::DrawConnection(GraphicsInfo r_GfxInfo, bool selected) const
 
 
 	color drawcolor = selected ? RED : BLACK;
-	pWind->SetPen(drawcolor, 3);
+	pWind->SetPen(drawcolor, 2);
 
 	int x1 = r_GfxInfo.x1;
 	int y1 = r_GfxInfo.y1;

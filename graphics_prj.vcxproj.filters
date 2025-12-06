@@ -200,6 +200,36 @@
     <ClCompile Include="AddXORgate3.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="AddBUFFgate.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AddINVgate.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AddXNORgate2.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AddXNORgate3.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="XNOR3.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="XNOR2.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="INV.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BUFF.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LED.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AddLED.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -360,6 +390,36 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="AddXORgate3.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddBUFFgate.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddINVgate.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddXNORgate2.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddXNORgate3.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="XNOR3.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="XNOR2.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="INV.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BUFF.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LED.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AddLED.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

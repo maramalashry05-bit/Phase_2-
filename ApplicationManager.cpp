@@ -13,6 +13,7 @@
 #include "AddXNORgate2.h"
 #include "AddBUFFgate.h"
 #include "AddINVgate.h"
+#include "AddLED.h"
 #include "SelectAction.h"
 #include "AddConnection.h"
 
@@ -101,6 +102,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case ADD_INV:
 			pAct = new AddINVgate(this);
+			break;
+		case ADD_LED:
+			pAct = new AddLED(this);
 			break;
 
 		case ADD_CONNECTION:
