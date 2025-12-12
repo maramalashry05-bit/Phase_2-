@@ -22,6 +22,8 @@
 #include "Move.h"
 #include "AddLabel.h"
 #include "EditLabel.h"
+#include "Components/Connection.h"
+
 
 ApplicationManager::ApplicationManager()
 {
@@ -243,24 +245,58 @@ void ApplicationManager::SetSelectedComponent(Component* comp)
 	SelectedComponent = comp;
 }
 
-void ApplicationManager::RemoveComponent(Component* comp)
+void ApplicationManager::RemoveComponent(Component* C)
 {
-	if (!comp) return;
+	if (!C) return;
 
+	// 1. Delete ALL connections attached to this component
 	for (int i = 0; i < CompCount; i++)
 	{
-		if (CompList[i] == comp)
-		{
-			delete CompList[i];  // Delete the component
+		Connection* conn = dynamic_cast<Connection*>(CompList[i]);
+		if (!conn) continue;
 
-			// Shift array left
+		Component* srcOwner = conn->getSourcePin() ? conn->getSourcePin()->getComponent() : nullptr;
+		Component* dstOwner = conn->getDestPin() ? conn->getDestPin()->getComponent() : nullptr;
+
+		if (srcOwner == C || dstOwner == C)
+		{
+			// --- CLEAN OUTPUT PIN ---
+			OutputPin* out = conn->getSourcePin();
+			if (out)
+				out->RemoveConnection(conn);
+
+			// --- CLEAN INPUT PIN ---
+			InputPin* in = conn->getDestPin();
+			if (in)
+				in->RemoveConnection();   // <--- THIS MAKES THE PIN FREE AGAIN
+
+			// NOW it is safe to delete the connection
+			delete conn;
+
+			// Shift component list
 			for (int j = i; j < CompCount - 1; j++)
 				CompList[j] = CompList[j + 1];
 
 			CompList[CompCount - 1] = nullptr;
 			CompCount--;
-
-			return;
+			i--; // stay at same index
 		}
 	}
+
+	// 2. Remove the component itself
+	int idx = -1;
+	for (int i = 0; i < CompCount; i++)
+		if (CompList[i] == C) { idx = i; break; }
+
+	if (idx != -1)
+	{
+		delete C;
+
+		for (int j = idx; j < CompCount - 1; j++)
+			CompList[j] = CompList[j + 1];
+
+		CompList[CompCount - 1] = nullptr;
+		CompCount--;
+	}
+
 }

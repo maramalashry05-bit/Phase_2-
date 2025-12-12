@@ -1,14 +1,39 @@
-#include "InputPin.h"
+#include "InputPin.h"    
+#include "Connection.h"  
 
+// intialize new variables to the constructor 
 InputPin::InputPin()
-{}
-
-void InputPin::setComponent(Component *pCmp)
 {
-	this->pComp = pCmp;
+    m_pComponent = nullptr;
+    m_Connection = nullptr;
+    m_InputNumber = -1;
+    m_Status = LOW;
+    Connected = false;
 }
 
-Component* InputPin::getComponent()
+// connection ( connected wire) handling 
+void InputPin::setConnection(Connection* c)
 {
-	return pComp;
+    m_Connection = c;
+    Connected = (c != nullptr);
+    if (!c)
+        m_InputNumber = -1;
+}
+
+Connection* InputPin::getConnection() const
+{
+    return m_Connection;
+}
+
+// pin index handling 
+
+bool InputPin::isConnected() const
+{
+    return Connected;
+}
+void InputPin::RemoveConnection()
+{
+    m_Connection = nullptr;
+    Connected = false;
+    m_InputNumber = -1;
 }
