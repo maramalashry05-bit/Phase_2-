@@ -35,14 +35,17 @@ void SelectAction::Execute()
 
     if (comp != NULL)
     {
-        
-        // Select this component
+        // Ensure only one component is selected
+        pManager->unselectAll();
+        // Select this component and inform ApplicationManager
         comp->Setselected(true);
+        pManager->SetSelectedComponent(comp);
     }
     else
     {
-        // Clicked empty area ? unselect all
+        // Clicked empty area ? unselect all and clear selected pointer
         pManager->unselectAll();
+        pManager->SetSelectedComponent(nullptr);
     }
 
     // Redraw GUI to show selection highlight
