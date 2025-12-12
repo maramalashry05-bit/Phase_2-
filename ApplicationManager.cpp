@@ -136,9 +136,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 void ApplicationManager::UpdateInterface()
 {
-		for(int i=0; i<CompCount; i++)
-			CompList[i]->Draw(OutputInterface);
+	// Clear drawing area first so removed components don't remain visible
+	OutputInterface->ClearDrawingArea();
 
+	// Redraw all remaining components
+	for(int i=0; i<CompCount; i++)
+		CompList[i]->Draw(OutputInterface);
 }
 
 ////////////////////////////////////////////////////////////////////
