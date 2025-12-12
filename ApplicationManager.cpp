@@ -19,6 +19,9 @@
 #include "Delete.h"
 #include "Copy.h"
 #include "Paste.h"
+#include "Move.h"
+#include "AddLabel.h"
+#include "EditLabel.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -123,7 +126,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case ADD_CONNECTION:
-			//TODO: Create AddConection Action here
 			pAct = new AddConnection(this);
 			break;
 	
@@ -141,6 +143,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case PASTE:
 			pAct = new Paste(this);
+			break;
+
+		case MOVE:
+			pAct = new Move(this);
+			break;
+		
+		case ADD_Label:
+			pAct = new AddLabel(this);
+			break;
+		
+		case EDIT_Label:
+			pAct = new EditLabel(this);
 			break;
 
 

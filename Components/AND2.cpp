@@ -34,7 +34,7 @@ void AND2::Draw(Output* pOut)
 
 
 
-//returns status of outputpin
+//returns status of outputpin 
 int AND2::GetOutPinStatus()	
 {
 	return m_OutputPin.getStatus();

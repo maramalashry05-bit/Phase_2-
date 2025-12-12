@@ -5,11 +5,13 @@
 #include "..\GUI\Output.h"
 #include "OutputPin.h"
 #include "InputPin.h"
+#include "../Label.h"
+
 //Base class for classes Gate, Switch, and LED.
 class Component
 {
 private:
-	string m_Label;
+	Label m_Label;
 	
 protected:
 	GraphicsInfo m_GfxInfo;	//The parameters required to draw a component
@@ -30,9 +32,11 @@ public:
 	GraphicsInfo GetGraphicsInfo();
 	virtual Component* Clone() const = 0;  // pure virtual, each gate implements it
 	void SetGraphicsInfo(const GraphicsInfo& g) { m_GfxInfo = g; }
-
-
 	
+	//Label Functions
+	void SetLabel(const std::string& text) { m_Label.SetText(text); }
+	const std::string& GetLabel() const { return m_Label.GetText(); }
+	bool isLapelEmp() { return m_Label.Empty(); };
 	Component();	
 	
 	//Destructor must be virtual

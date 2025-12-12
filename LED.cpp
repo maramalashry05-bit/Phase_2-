@@ -1,63 +1,64 @@
 #include "LED.h"
 
-LED::LED(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(1, r_FanOut)
+LED::LED(const GraphicsInfo& r_GfxInfo, int r_FanOut) : Gate(1, 0) , m_isOn(false)
 {
-	m_GfxInfo.x1 = r_GfxInfo.x1;
-	m_GfxInfo.y1 = r_GfxInfo.y1;
-	m_GfxInfo.x2 = r_GfxInfo.x2;
-	m_GfxInfo.y2 = r_GfxInfo.y2;
+    m_GfxInfo.x1 = r_GfxInfo.x1;
+    m_GfxInfo.y1 = r_GfxInfo.y1;
+    m_GfxInfo.x2 = r_GfxInfo.x2;
+    m_GfxInfo.y2 = r_GfxInfo.y2;
 }
-
 
 void LED::Operate()
 {
-	//??? 
+    // LED does not drive any outputs. Its state is purely visual:
+    // read its single input pin and update the internal visual flag.
+    if (GetInputPin(1) != nullptr)
+        m_isOn = (GetInputPinStatus(1) == HIGH);
+    else
+        m_isOn = false;
 }
-
 
 // Function Draw
 // Draws LED
 void LED::Draw(Output* pOut)
 {
-	//Call output class and pass gate drawing info to it.
-
-	pOut->DrawLED(m_GfxInfo, false ,isSelected);
-
+    // Pass the current ON/OFF state to the output drawing routine.
+    pOut->DrawLED(m_GfxInfo, m_isOn, isSelected);
 }
 
-//returns status of outputpin
+// LED has no output pin -> return -1 or nullptr as appropriate
 int LED::GetOutPinStatus()
 {
-	return -1;
-}
-
-
-//returns status of Inputpin #n
-int LED::GetInputPinStatus(int n)
-{
-	return m_InputPins[n - 1].getStatus();	//n starts from 1 but array index starts from 0.
-}
-
-//Set status of an input pin ot HIGH or LOW
-void LED::setInputPinStatus(int n, STATUS s)
-{
-	m_InputPins[n - 1].setStatus(s);
+    return -1;
 }
 
 OutputPin* LED::GetOutputPin()
 {
-	return &m_OutputPin; // member of type OutputPin
+    return nullptr;
 }
 
+// Single input pin handling
+int LED::GetInputPinStatus(int n)
+{
+    if (n == 1 && GetInputPin(1) != nullptr)
+        return m_InputPins[0].getStatus();
+    return -1;
+}
+
+void LED::setInputPinStatus(int n, STATUS s)
+{
+    if (n == 1)
+        m_InputPins[0].setStatus(s);
+}
 
 InputPin* LED::GetInputPin(int n)
 {
-	if (n >= 1 && n <= 2)
-		return &m_InputPins[n - 1]; // m_InputPins[0..1]
-	return nullptr; // invalid index
+    if (n == 1)
+        return &m_InputPins[0];
+    return nullptr;
 }
 
 Component* LED::Clone() const
 {
-	return new LED(*this);  // uses copy constructor
+    return new LED(*this);
 }

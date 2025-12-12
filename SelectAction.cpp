@@ -32,6 +32,7 @@ void SelectAction::Execute()
 
     // Check if a component exists at that point
     Component* comp = pManager->GetComponentAt(x, y);
+    Output* pOut = pManager->GetOutput();
 
     if (comp != NULL)
     {
@@ -39,6 +40,12 @@ void SelectAction::Execute()
         pManager->unselectAll();
         // Select this component and inform ApplicationManager
         comp->Setselected(true);
+        
+        if(!comp->isLapelEmp()){
+        std::string msg = std::string("Label : ") + comp->GetLabel();
+        pOut->PrintMsg(msg);
+        }
+        
         pManager->SetSelectedComponent(comp);
     }
     else

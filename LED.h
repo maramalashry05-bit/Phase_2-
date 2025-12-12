@@ -14,6 +14,9 @@
 
 class LED :public Gate
 {
+private:
+    bool m_isOn; // Internal state to represent if the LED is ON or OFF
+
 public:
 	LED(const GraphicsInfo& r_GfxInfo, int r_FanOut);
 	virtual void Operate();	//Calculates the output of LED
