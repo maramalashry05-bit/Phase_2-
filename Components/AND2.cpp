@@ -32,6 +32,8 @@ void AND2::Draw(Output* pOut)
 		
 }
 
+
+
 //returns status of outputpin
 int AND2::GetOutPinStatus()	
 {
@@ -63,5 +65,11 @@ void AND2::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n-1].setStatus(s);
 }
+
+Component* AND2::Clone() const
+{
+	return new AND2(*this);  // uses copy constructor
+}
+
 
 

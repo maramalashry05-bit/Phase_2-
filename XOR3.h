@@ -25,6 +25,8 @@ public:
 	virtual OutputPin* GetOutputPin();
 	virtual InputPin* GetInputPin(int n);
 
+	// Clone function for Copy & Paste
+	virtual Component* Clone() const override;
 
 };
 

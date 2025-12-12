@@ -198,6 +198,7 @@
     <ClCompile Include="Components\OutputPin.cpp" />
     <ClCompile Include="Components\Pin.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="Copy.cpp" />
     <ClCompile Include="Delete.cpp" />
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
@@ -215,6 +216,7 @@
     <ClCompile Include="OR2.cpp" />
     <ClCompile Include="AddORgate3.cpp" />
     <ClCompile Include="OR3.cpp" />
+    <ClCompile Include="Paste.cpp" />
     <ClCompile Include="SelectAction.cpp" />
     <ClCompile Include="XNOR2.cpp" />
     <ClCompile Include="XNOR3.cpp" />
@@ -280,6 +282,7 @@
     <ClInclude Include="Components\OutputPin.h" />
     <ClInclude Include="Components\Pin.h" />
     <ClInclude Include="ApplicationManager.h" />
+    <ClInclude Include="Copy.h" />
     <ClInclude Include="Defs.H" />
     <ClInclude Include="Delete.h" />
     <ClInclude Include="GUI\Input.h" />
@@ -298,6 +301,7 @@
     <ClInclude Include="OR2.h" />
     <ClInclude Include="AddORgate3.h" />
     <ClInclude Include="OR3.h" />
+    <ClInclude Include="Paste.h" />
     <ClInclude Include="SelectAction.h" />
     <ClInclude Include="XNOR2.h" />
     <ClInclude Include="XNOR3.h" />

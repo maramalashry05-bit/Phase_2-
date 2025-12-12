@@ -62,3 +62,9 @@ InputPin* XNOR2::GetInputPin(int n)
 		return &m_InputPins[n - 1]; // m_InputPins[0..1]
 	return nullptr; // invalid index
 }
+
+
+Component* XNOR2::Clone() const
+{
+	return new XNOR2(*this);  // uses copy constructor
+}

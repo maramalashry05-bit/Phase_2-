@@ -28,6 +28,9 @@ public:
 	virtual InputPin* GetInputPin(int n)=0;
 	virtual void setInputPinStatus(int n, STATUS s)=0;	//set status of Inputpin # n, to be used by connection class.
 	GraphicsInfo GetGraphicsInfo();
+	virtual Component* Clone() const = 0;  // pure virtual, each gate implements it
+	void SetGraphicsInfo(const GraphicsInfo& g) { m_GfxInfo = g; }
+
 
 	
 	Component();	

@@ -65,3 +65,8 @@ InputPin* XOR3::GetInputPin(int n)
 		return &m_InputPins[n - 1]; // m_InputPins[0..1]
 	return nullptr; // invalid index
 }
+
+Component* XOR3::Clone() const
+{
+	return new XOR3(*this);  // uses copy constructor
+}

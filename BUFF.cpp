@@ -61,3 +61,10 @@ InputPin* BUFF::GetInputPin(int n)
 		return &m_InputPins[n - 1]; // m_InputPins[0..1]
 	return nullptr; // invalid index
 }
+
+
+
+Component* BUFF::Clone() const
+{
+	return new BUFF(*this);  // uses copy constructor
+}

@@ -61,3 +61,8 @@ InputPin* OR2::GetInputPin(int n)
 		return &m_InputPins[n - 1]; // m_InputPins[0..1]
 	return nullptr; // invalid index
 }
+
+Component* OR2::Clone() const
+{
+	return new OR2(*this);  // uses copy constructor
+}

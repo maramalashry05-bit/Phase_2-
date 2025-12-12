@@ -61,3 +61,7 @@ InputPin* OR3::GetInputPin(int n)
 		return &m_InputPins[n - 1]; // m_InputPins[0..1]
 	return nullptr; // invalid index
 }
+Component* OR3::Clone() const
+{
+	return new OR3(*this);  // uses copy constructor
+}

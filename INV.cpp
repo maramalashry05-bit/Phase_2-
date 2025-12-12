@@ -61,3 +61,9 @@ InputPin* INV::GetInputPin(int n)
 		return &m_InputPins[n - 1]; // m_InputPins[0..1]
 	return nullptr; // invalid index
 }
+
+
+Component* INV::Clone() const
+{
+	return new INV(*this);  // uses copy constructor
+}

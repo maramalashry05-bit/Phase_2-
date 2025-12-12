@@ -23,6 +23,8 @@ public:
 	virtual InputPin* GetInputPin(int n);
 
 	virtual void setInputPinStatus(int n, STATUS s);	//set status of Inputpin # n, to be used by connection class.
+	// Clone function for Copy & Paste
+	virtual Component* Clone() const override;
 
 
 };

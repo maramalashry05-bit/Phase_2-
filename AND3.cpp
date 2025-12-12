@@ -61,3 +61,8 @@ InputPin* AND3::GetInputPin(int n)
 		return &m_InputPins[n - 1]; // m_InputPins[0..1]
 	return nullptr; // invalid index
 }
+
+Component* AND3::Clone() const
+{
+	return new AND3(*this);  // uses copy constructor
+}

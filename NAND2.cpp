@@ -61,3 +61,7 @@ InputPin* NAND2::GetInputPin(int n)
 		return &m_InputPins[n - 1]; // m_InputPins[0..1]
 	return nullptr; // invalid index
 }
+Component* NAND2::Clone() const
+{
+	return new NAND2(*this);  // uses copy constructor
+}

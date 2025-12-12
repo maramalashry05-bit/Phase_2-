@@ -17,6 +17,8 @@
 #include "SelectAction.h"
 #include "AddConnection.h"
 #include "Delete.h"
+#include "Copy.h"
+#include "Paste.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -48,6 +50,18 @@ Component* ApplicationManager::GetComponentAt(int x, int y) {
 	}
 	return NULL;
 }
+
+void ApplicationManager::SetClipboard(Component* comp)
+{
+	if (Clipboard) delete Clipboard;  // delete previous clipboard content
+	Clipboard = comp;
+}
+
+Component* ApplicationManager::GetClipboard() const
+{
+	return Clipboard;
+}
+
 
 
 ActionType ApplicationManager::GetUserAction()
@@ -120,6 +134,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DEL:
 			pAct = new Delete (this);
 			break;
+
+		case COPY:
+			pAct = new Copy(this);
+			break;
+
+		case PASTE:
+			pAct = new Paste(this);
+			break;
+
 
 		case EXIT:
 			///TODO: create ExitAction here
