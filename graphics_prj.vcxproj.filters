@@ -230,6 +230,9 @@
     <ClCompile Include="AddLED.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Delete.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -420,6 +423,9 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="AddLED.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Delete.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

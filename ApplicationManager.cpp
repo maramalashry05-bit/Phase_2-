@@ -16,6 +16,7 @@
 #include "AddLED.h"
 #include "SelectAction.h"
 #include "AddConnection.h"
+#include "Delete.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -115,6 +116,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SELECT:
 			pAct = new SelectAction(this);
 			break;
+
+		case DEL:
+			pAct = new Delete (this);
+			break;
+
 		case EXIT:
 			///TODO: create ExitAction here
 			break;
@@ -186,4 +192,35 @@ ApplicationManager::~ApplicationManager()
 	delete OutputInterface;
 	delete InputInterface;
 	
+}
+Component* ApplicationManager::GetSelectedComponent() const
+{
+	return SelectedComponent;
+}
+
+void ApplicationManager::SetSelectedComponent(Component* comp)
+{
+	SelectedComponent = comp;
+}
+
+void ApplicationManager::RemoveComponent(Component* comp)
+{
+	if (!comp) return;
+
+	for (int i = 0; i < CompCount; i++)
+	{
+		if (CompList[i] == comp)
+		{
+			delete CompList[i];  // Delete the component
+
+			// Shift array left
+			for (int j = i; j < CompCount - 1; j++)
+				CompList[j] = CompList[j + 1];
+
+			CompList[CompCount - 1] = nullptr;
+			CompCount--;
+
+			return;
+		}
+	}
 }

@@ -19,6 +19,7 @@ private:
 
 	Output* OutputInterface; //pointer to the Output Clase Interface
 	Input* InputInterface; //pointer to the Input Clase Interface
+	Component* SelectedComponent = nullptr;
 
 
 public:
@@ -49,6 +50,11 @@ public:
 	Component* GetComponentAt(int x, int y);
 	//destructor
 	~ApplicationManager();
+
+	Component* GetSelectedComponent() const;
+	void SetSelectedComponent(Component* comp);
+	void RemoveComponent(Component* comp);
+
 };
 
 #endif
