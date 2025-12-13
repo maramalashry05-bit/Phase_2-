@@ -14,48 +14,54 @@ void SelectAction::ReadActionParameters()
     Output* pOut = pManager->GetOutput();
     Input* pIn = pManager->GetInput();
 
-    //Print Action Message
-    pOut->PrintMsg("Select a component");
+    
+
+   
+    //Clear Status Bar
+    pOut->ClearStatusBar();
+    // Print action Message
+    pOut->PrintMsg("Click to select / unselect components. Click empty area to clear selection.");
 
     //Wait for User Input
     pIn->GetPointClicked(x, y);
-
-    //Clear Status Bar
-    pOut->ClearStatusBar();
 
 }
 
 void SelectAction::Execute()
 {
-    // Read where user clicked
     ReadActionParameters();
 
-    // Check if a component exists at that point
     Component* comp = pManager->GetComponentAt(x, y);
     Output* pOut = pManager->GetOutput();
 
-    if (comp != NULL)
+    if (comp != nullptr)
     {
-        // Ensure only one component is selected
-        pManager->unselectAll();
-        // Select this component and inform ApplicationManager
-        comp->Setselected(true);
-        
-        if(!comp->isLapelEmp()){
-        std::string msg = std::string("Label : ") + comp->GetLabel();
-        pOut->PrintMsg(msg);
+        if (comp->Getselected())
+        {
+            // toggle OFF
+            pManager->UnselectComponent(comp);
+            pOut->PrintMsg("Component unselected");
         }
-        
-        pManager->SetSelectedComponent(comp);
+        else
+        {
+            // toggle ON (add to selection)
+            pManager->SetSelectedComponent(comp);
+            pOut->PrintMsg("Component selected");
+
+            if (!comp->isLapelEmp())
+            {
+                std::string msg = "Label : " + comp->GetLabel();
+                pOut->PrintMsg(msg);
+            }
+        }
     }
     else
     {
-        // Clicked empty area ? unselect all and clear selected pointer
+        // empty area ? unselect all
         pManager->unselectAll();
-        pManager->SetSelectedComponent(nullptr);
+        pOut->PrintMsg("Clicked empty area, all components unselected");
     }
 
-    // Redraw GUI to show selection highlight
     pManager->UpdateInterface();
 }
 void SelectAction::Undo()

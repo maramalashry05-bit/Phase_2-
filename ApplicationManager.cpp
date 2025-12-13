@@ -28,6 +28,7 @@
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
+	SelectedCount = 0;
 
 	for(int i=0; i<MaxCompCount; i++)
 		CompList[i] = NULL;
@@ -42,11 +43,19 @@ void ApplicationManager::AddComponent(Component* pComp)
 	CompList[CompCount++] = pComp;		
 }
 ////////////////////////////////////////////////////////////////////
-void ApplicationManager::unselectAll() {
-	for (int i = 0; i < CompCount; i++) {
-		CompList[i]->Setselected(false);
+
+	void ApplicationManager::unselectAll()
+	{
+		for (int i = 0; i < SelectedCount; i++)
+		{
+			if (SelectedComponent[i] != nullptr)
+				SelectedComponent[i]->Setselected(false);
+		}
+
+		SelectedCount = 0;
 	}
-}
+
+
 
 Component* ApplicationManager::GetComponentAt(int x, int y) {
 	for (int i = 0; i < CompCount; i++) {
@@ -237,13 +246,43 @@ ApplicationManager::~ApplicationManager()
 }
 Component* ApplicationManager::GetSelectedComponent() const
 {
-	return SelectedComponent;
+	for(int i =0;i< CompCount;i++)
+	return SelectedComponent[i];
 }
 
 void ApplicationManager::SetSelectedComponent(Component* comp)
 {
-	SelectedComponent = comp;
+	if (comp == nullptr) return;
+
+	// prevent duplicate selection
+	for (int i = 0; i < SelectedCount; i++)
+		if (SelectedComponent[i] == comp)
+			return;
+
+	comp->Setselected(true);
+	SelectedComponent[SelectedCount++] = comp;
 }
+
+void ApplicationManager::UnselectComponent(Component* comp)
+{
+	if (!comp) return;
+
+	for (int i = 0; i < SelectedCount; i++)
+	{
+		if (SelectedComponent[i] == comp)
+		{
+			comp->Setselected(false);
+
+			// shift left
+			for (int j = i; j < SelectedCount - 1; j++)
+				SelectedComponent[j] = SelectedComponent[j + 1];
+
+			SelectedCount--;
+			return;
+		}
+	}
+}
+
 
 void ApplicationManager::RemoveComponent(Component* C)
 {

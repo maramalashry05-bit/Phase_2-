@@ -15,12 +15,13 @@ class ApplicationManager
 
 private:
 	int CompCount;		//Actual number of Components
+	int SelectedCount;
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
 
 	Output* OutputInterface; //pointer to the Output Clase Interface
 	Input* InputInterface; //pointer to the Input Clase Interface
-	Component* SelectedComponent = nullptr;
-	Component* Clipboard = nullptr;  // stores the copied component
+	Component* SelectedComponent[MaxCompCount] ;
+	Component* Clipboard=nullptr ;  // stores the copied component
 
 
 public:
@@ -54,6 +55,7 @@ public:
 
 	Component* GetSelectedComponent() const;
 	void SetSelectedComponent(Component* comp);
+	void UnselectComponent(Component* comp);
 	void RemoveComponent(Component* comp);
 	void SetClipboard(Component* comp);
 	Component* GetClipboard() const;
