@@ -1,4 +1,6 @@
 #include "BUFF.h"
+#include <fstream> 
+#include <string>
 
 BUFF::BUFF(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(1, r_FanOut)
 {
@@ -30,6 +32,39 @@ void BUFF::Draw(Output* pOut)
 	pOut->DrawBUFF(m_GfxInfo, isSelected);
 
 }
+
+
+
+void BUFF::Save(std::ofstream& outfile, int compID) const 
+{
+    
+    const_cast<BUFF*>(this)->SetID(compID);
+
+    outfile << "BUFF\t";
+    outfile << compID << "\t";
+    outfile << GetLabel() << "\t";
+
+    
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void BUFF::Load(std::ifstream& infile) 
+{
+   
+    int id;
+    infile >> id;
+    SetID(id);
+
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+    
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+   
+}
+
 
 //returns status of outputpin
 int BUFF::GetOutPinStatus()

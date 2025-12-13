@@ -1,6 +1,7 @@
 #include "Connection.h"
+#include <fstream>
 
-Connection::Connection(const GraphicsInfo &r_GfxInfo, OutputPin *pSrcPin,InputPin *pDstPin):Component(r_GfxInfo)	
+Connection::Connection(const GraphicsInfo &r_GfxInfo, OutputPin *pSrcPin,InputPin *pDstPin):Component(r_GfxInfo)
 	
 {
 	SrcPin = pSrcPin;
@@ -29,6 +30,28 @@ InputPin* Connection::GetInputPin(int n)
 	return NULL;
 }
 
+void Connection::Save(std::ofstream& outfile, int compID) const
+{
+
+    int srcID = SrcPin->getComponent()->GetID();
+
+
+    int dstID = DstPin->getComponent()->GetID();
+
+
+	int pinNum = DstPin->getInputNumber();
+
+    outfile << srcID << "\t";
+    outfile << dstID << "\t";
+    outfile << pinNum << std::endl;
+}
+
+void Connection::Load(std::ifstream& infile)
+{
+
+}
+
+
 void Connection::Operate()
 {
 	//Status of connection destination pin = status of connection source pin
@@ -41,6 +64,7 @@ void Connection::Draw(Output* pOut)
 		pOut->DrawConnection(m_GfxInfo,isSelected);
 	
 }
+
 
 int Connection::GetOutPinStatus()	//returns status of outputpin if LED, return -1
 {

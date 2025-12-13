@@ -4,6 +4,7 @@ Component::Component(const GraphicsInfo &r_GfxInfo)
 {
 	m_GfxInfo = r_GfxInfo;	
 	isSelected = false;
+	m_ID = 0;
 }
 
 
@@ -13,9 +14,10 @@ GraphicsInfo Component::GetGraphicsInfo()
 	return m_GfxInfo;
 }
 
-Component::Component()
- { 
+Component::Component() 
+{ 
 	isSelected = false;
+	m_ID = 0;
 }
 
 	void Component:: Setselected(bool s) 

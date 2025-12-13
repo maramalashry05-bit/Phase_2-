@@ -15,4 +15,7 @@ Gate::Gate(int r_Inputs, int r_FanOut):m_OutputPin(r_FanOut)
 		m_InputPins[i].setComponent(this);
 }
 
-
+Gate::~Gate()
+{
+	delete[] m_InputPins;
+}

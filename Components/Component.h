@@ -6,13 +6,19 @@
 #include "OutputPin.h"
 #include "InputPin.h"
 #include "../Label.h"
+#include <fstream> 
+#include <string>
 
 //Base class for classes Gate, Switch, and LED.
 class Component
 {
 private:
+	GraphicsInfo m_GfxInfo;
+	bool isSelected=false;
 	Label m_Label;
-	
+     int m_ID=0;
+
+
 protected:
 	GraphicsInfo m_GfxInfo;	//The parameters required to draw a component
 	bool isSelected;
@@ -23,6 +29,16 @@ public:
 	void Setselected(bool s);
 	bool Getselected() const;
 	bool IsInside(int x , int y );
+	Component();
+
+
+	virtual void Save(std::ofstream& outfile, int compID) const = 0;
+	virtual void Load(std::ifstream& infile) = 0;
+	void SetID(int id) { m_ID = id; }
+	int GetID() const { return m_ID; } 
+
+
+
 	
 	virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1

@@ -1,4 +1,6 @@
 #include "OR2.h"
+#include <fstream> 
+#include <string>
 
 OR2::OR2(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
 {
@@ -29,6 +31,38 @@ void OR2::Draw(Output* pOut)
 
 	pOut->DrawOR2(m_GfxInfo, isSelected);
 
+}
+
+void OR2::Save(std::ofstream& outfile, int compID) const
+{
+   
+    const_cast<OR2*>(this)->SetID(compID);
+
+   
+    outfile << "OR2\t";
+    outfile << compID << "\t";
+    outfile << GetLabel() << "\t";
+
+   
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void OR2::Load(std::ifstream& infile) 
+{
+    
+    int id;
+    infile >> id;
+    SetID(id);
+
+    
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+   
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+    
 }
 
 //returns status of outputpin

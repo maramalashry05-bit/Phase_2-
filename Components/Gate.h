@@ -12,6 +12,7 @@
 #include "InputPin.h"
 #include "OutputPin.h"
 #include "Component.h"
+#include <fstream>
 
 class Gate:public Component
 {
@@ -21,6 +22,9 @@ protected:
 	int m_Inputs;		//No. of input pins of that Gate.
 public:
 	Gate(int r_Inputs, int r_FanOut);
+
+virtual void Save(std::ofstream& outfile, int compID) const;
+virtual void Load(std::ifstream& infile) override = 0;
 
 
 };

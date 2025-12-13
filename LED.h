@@ -2,6 +2,8 @@
 #ifndef LED_H
 #define LED_H
 #include "Components\Gate.h"
+#include <fstream> 
+#include <string>
 
 /*
   Class LED
@@ -21,6 +23,9 @@ public:
 	LED(const GraphicsInfo& r_GfxInfo, int r_FanOut);
 	virtual void Operate();	//Calculates the output of LED
 	virtual void Draw(Output* pOut);	//Draws 1-input LED
+
+	virtual void Save(std::ofstream& outfile, int compID) const;
+    virtual void Load(std::ifstream& infile);
 
 	virtual int GetOutPinStatus();	//returns status of outputpin if LED, return -1
 	virtual int GetInputPinStatus(int n);	//returns status of Inputpin # n if SWITCH, return -1

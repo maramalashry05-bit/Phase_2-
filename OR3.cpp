@@ -1,5 +1,6 @@
 #include "OR3.h"
-
+#include <fstream> 
+#include <string>
 OR3::OR3(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(3, r_FanOut)
 {
 	m_GfxInfo.x1 = r_GfxInfo.x1;
@@ -30,6 +31,38 @@ void OR3::Draw(Output* pOut)
 	pOut->DrawOR3(m_GfxInfo, isSelected);
 
 }
+
+void OR3::Save(std::ofstream& outfile, int compID) const 
+{
+   
+    const_cast<OR3*>(this)->SetID(compID);
+
+   
+    outfile << "OR3\t";
+    outfile << compID << "\t";
+    outfile << GetLabel() << "\t";
+
+    
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void OR3::Load(std::ifstream& infile) 
+{
+   
+    int id;
+    infile >> id;
+    SetID(id);
+
+   
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+   
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+}
+
 
 //returns status of outputpin
 int OR3::GetOutPinStatus()

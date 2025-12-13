@@ -2,10 +2,12 @@
 #include "component.h"
 #include "InputPin.h"
 #include "OutputPin.h"
+#include <fstream> 
+#include <string>
 
 class Connection : public Component
 {
-	Component*	SrcCmpnt;	//Connection source component
+	Component* SrcCmpnt;	//Connection source component
 	Component*	DstCmpnt;	//Connection Destination component
 	
 	OutputPin* SrcPin;	//The Source pin of this connection (an output pin of certain Component)
@@ -15,6 +17,9 @@ public:
 
 	virtual void Operate();	//Calculates the output according to the inputs
 	virtual void Draw(Output* pOut);	//for each component to Draw itself
+
+	virtual void Save(std::ofstream& outfile, int compID) const;
+	virtual void Load(std::ifstream& infile);
 
 	
 	void setSourcePin(OutputPin *pSrcPin);

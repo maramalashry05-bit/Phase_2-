@@ -1,4 +1,6 @@
 #include "XNOR3.h"
+#include <fstream> 
+#include <string>
 
 XNOR3::XNOR3(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(3, r_FanOut)
 {
@@ -35,6 +37,38 @@ void XNOR3::Draw(Output* pOut)
 	pOut->DrawXNOR3(m_GfxInfo, isSelected);
 
 }
+
+
+void XNOR3::Save(std::ofstream& outfile, int compID) const 
+{
+    const_cast<XNOR3*>(this)->SetID(compID);
+
+  
+    outfile << "XNOR3\t";
+    outfile << compID << "\t";
+    outfile << GetLabel() << "\t";
+
+   
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void XNOR3::Load(std::ifstream& infile) 
+{
+    int id;
+    infile >> id;
+    SetID(id);
+
+    
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+    
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+}
+
+
 
 //returns status of outputpin
 int XNOR3::GetOutPinStatus()

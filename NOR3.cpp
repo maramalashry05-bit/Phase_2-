@@ -1,4 +1,6 @@
 #include "NOR3.h"
+#include <fstream> 
+#include <string>
 
 NOR3::NOR3(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(3, r_FanOut)
 {
@@ -30,6 +32,38 @@ void NOR3::Draw(Output* pOut)
 	pOut->DrawNOR3(m_GfxInfo, isSelected);
 
 }
+
+void NOR3::Save(std::ofstream& outfile, int compID) const 
+{
+   
+    const_cast<NOR3*>(this)->SetID(compID);
+
+    outfile << "NOR3\t";
+    outfile << compID << "\t";
+    outfile << GetLabel() << "\t";
+
+    
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void NOR3::Load(std::ifstream& infile) 
+{
+   
+    int id;
+    infile >> id;
+    SetID(id);
+
+    
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+   
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+   
+}
+
 
 //returns status of outputpin
 int NOR3::GetOutPinStatus()
