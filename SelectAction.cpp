@@ -1,4 +1,5 @@
 #include "SelectAction.h"
+#include "Switch.h"
 
 SelectAction::SelectAction(ApplicationManager* pApp) : Action(pApp) 
 {
@@ -63,6 +64,12 @@ void SelectAction::Execute()
     }
 
     pManager->UpdateInterface();
+    Switch* pSw = dynamic_cast<Switch*>(comp);
+    if (pSw)
+    {
+        pSw->Toggle();
+    }
+
 }
 void SelectAction::Undo()
 {

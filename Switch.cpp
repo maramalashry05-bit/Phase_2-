@@ -21,7 +21,7 @@ void Switch::Operate()
 void Switch::Draw(Output* pOut)
 {
     // Draw switch rectangle 
-    pOut->DrawSwitch(m_GfxInfo, isSelected);
+    pOut->DrawSwitch(m_GfxInfo, isSelected,m_State);
 }
 
 int Switch::GetOutPinStatus()
@@ -66,7 +66,7 @@ void Switch::SetState(bool state)
     Operate();
 }
 
-//Component* Switch::Clone() const
-//{
-//    return new Switch(*this); // copy constructor
-//}
+Component* Switch::Clone() const
+{
+    return new Switch(*this); // copy constructor
+}

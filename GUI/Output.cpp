@@ -229,39 +229,45 @@ void Output::DrawNAND3(GraphicsInfo r_GfxInfo, bool selected) const
 }
 
 
-void Output::DrawSwitch(GraphicsInfo r_GfxInfo, bool selected) const
+void Output::DrawSwitch(GraphicsInfo r_GfxInfo, bool selected, bool state) const
 {
+	const int SWITCH_WIDTH = 50;
+	const int SWITCH_HEIGHT = 30;
 
+	// Colors
+	color drawColor = selected ? RED : BLACK;  // border
+	color fillColor = LIGHTGRAY;               // switch background
+	color circleColor = state ? GREEN : RED;   // toggle circle
 
-	const int SWITCH_WIDTH = 50;  // width of switch rectangle
-	const int SWITCH_HEIGHT = 30; // height of switch rectangle
-
-
-	// Determine color for selection
-	color drawColor = selected ? RED : BLACK;
-	color fillColor = LIGHTGRAY;
-	color nodeColor = selected ? RED : GREEN;
-
-	// Set pen and brush
-	pWind->SetPen(drawColor, 3);   // border thickness 3
-	pWind->SetBrush(fillColor);
-
-	// Draw the rectangle representing the switch
-	int x = r_GfxInfo.x1;  // top-left x
-	int y = r_GfxInfo.y1;  // top-left y
+	// Rectangle coordinates
+	int x = r_GfxInfo.x1;
+	int y = r_GfxInfo.y1;
 	int x2 = x + SWITCH_WIDTH;
 	int y2 = y + SWITCH_HEIGHT;
 
+	// Draw switch rectangle
+	pWind->SetPen(drawColor, 3);
+	pWind->SetBrush(fillColor);
 	pWind->DrawRectangle(x, y, x2, y2);
 
-	// Draw the small toggle circle inside rectangle
-	int circleRadius = 10;
-	int circleX = x2 - circleRadius - 5;
+	// Draw toggle circle
+	int circleRadius = 12;
+	int circleX = state ? (x2 - circleRadius - 5) : (x + circleRadius + 5);
 	int circleY = y + SWITCH_HEIGHT / 2;
 
-	pWind->SetBrush(nodeColor);
+	pWind->SetBrush(circleColor);
 	pWind->DrawCircle(circleX, circleY, circleRadius);
+
+	// Draw text inside circle (centered)
+	std::string text = state ? "ON" : "OFF";
+	int textX = circleX - 12;  // approximate centering
+	int textY = circleY - 7;   // approximate centering
+
+	pWind->SetPen(BLACK);
+	pWind->DrawString(textX, textY, text);
 }
+
+
 
 
 
@@ -409,35 +415,40 @@ void Output::DrawLED(GraphicsInfo r_GfxInfo, bool isOn, bool selected) const
 
 void Output::DrawConnection(GraphicsInfo r_GfxInfo, bool selected) const
 {
-
-	//TODO: Add code to draw connection
-
-
-
-
 	color drawcolor = selected ? RED : BLACK;
-	pWind->SetPen(drawcolor, 2);
+	int thickness = selected ? 4 : 2;
+	pWind->SetPen(drawcolor, thickness);
+
 
 	int x1 = r_GfxInfo.x1;
 	int y1 = r_GfxInfo.y1;
 	int x2 = r_GfxInfo.x2;
 	int y2 = r_GfxInfo.y2;
 
+	int junctionRadius = 4;
+	pWind->SetBrush(BLACK);
+
 	if (y1 == y2)
 	{
-		// Straight
+		// Straight horizontal line
 		pWind->DrawLine(x1, y1, x2, y2);
 	}
 	else
 	{
-		// broken (horizontal ? vertical ? horizontal)
+		// Broken line (horizontal -> vertical -> horizontal)
 		int xm = (x1 + x2) / 2;
-		pWind->DrawLine(x1, y1, xm, y1);
-		pWind->DrawLine(xm, y1, xm, y2);
-		pWind->DrawLine(xm, y2, x2, y2);
 
+		// Draw segments
+		pWind->DrawLine(x1, y1, xm, y1); // horizontal
+		pWind->DrawLine(xm, y1, xm, y2); // vertical
+		pWind->DrawLine(xm, y2, x2, y2); // horizontal
+
+		// Draw junction circles at bends
+		pWind->DrawCircle(xm, y1, junctionRadius); // first bend
+		pWind->DrawCircle(xm, y2, junctionRadius); // second bend
 	}
 }
+
 
 
 

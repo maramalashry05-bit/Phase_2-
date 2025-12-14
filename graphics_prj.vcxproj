@@ -204,6 +204,7 @@
     <ClCompile Include="Components\Pin.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="Copy.cpp" />
+    <ClCompile Include="Cut.cpp" />
     <ClCompile Include="Delete.cpp" />
     <ClCompile Include="EditLabel.cpp" />
     <ClCompile Include="GUI\Input.cpp" />
@@ -297,6 +298,7 @@
     <ClInclude Include="Components\Pin.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="Copy.h" />
+    <ClInclude Include="Cut.h" />
     <ClInclude Include="Defs.H" />
     <ClInclude Include="Delete.h" />
     <ClInclude Include="EditLabel.h" />

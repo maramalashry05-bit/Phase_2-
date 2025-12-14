@@ -41,8 +41,18 @@ void AddNANDgate3::Execute()
 	GInfo.x2 = Cx + Len / 2;
 	GInfo.y1 = Cy - Wdth / 2;
 	GInfo.y2 = Cy + Wdth / 2;
+	Component* overlap = pManager->GetOverlap(GInfo.x1, GInfo.y1, GInfo.x2, GInfo.y2);
+	if (overlap)
+	{
+		// Show message to user
+		pManager->GetOutput()->PrintMsg("Cannot place component here (overlap)");
+		return; // Stop execution
+	}
+
+
 	NAND3* pA = new NAND3(GInfo, NAND3_FANOUT);
 	pManager->AddComponent(pA);
+	pManager->UpdateInterface();
 }
 
 void AddNANDgate3::Undo()

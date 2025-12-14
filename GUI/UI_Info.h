@@ -59,7 +59,10 @@ struct UI_Info	//User Interface Info.
 		BUFF_Width = 50,        //BUFF Gate Image default width
 		BUFF_Height = 50,       //BUFF Gate Image default height
 		LED_Width = 50,          // LED Image default width
-		LED_Height = 50;       // LED I mage default height
+		LED_Height = 50,      // LED I mage default height
+		SWITCH_Width = 50,       // Switch width
+		SWITCH_Height = 50;       // Switch height
+
 }UI;	//create a single global object UI
 
 #endif

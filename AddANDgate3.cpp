@@ -41,8 +41,18 @@ void AddANDgate3::Execute()
 	GInfo.x2 = Cx + Len / 2;
 	GInfo.y1 = Cy - Wdth / 2;
 	GInfo.y2 = Cy + Wdth / 2;
+	Component* overlap = pManager->GetOverlap(GInfo.x1, GInfo.y1, GInfo.x2, GInfo.y2);
+	if (overlap)
+	{
+		// Show message to user
+		pManager->GetOutput()->PrintMsg("Cannot place component here (overlap)");
+		return; // Stop execution
+	}
+
+
 	AND3* pA = new AND3(GInfo, AND3_FANOUT);
 	pManager->AddComponent(pA);
+	pManager->UpdateInterface();
 }
 
 void AddANDgate3::Undo()

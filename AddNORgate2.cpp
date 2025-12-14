@@ -42,8 +42,18 @@ void AddNORgate2::Execute()
 	GInfo.x2 = Cx + Len / 2;
 	GInfo.y1 = Cy - Wdth / 2;
 	GInfo.y2 = Cy + Wdth / 2;
+	Component* overlap = pManager->GetOverlap(GInfo.x1, GInfo.y1, GInfo.x2, GInfo.y2);
+	if (overlap)
+	{
+		// Show message to user
+		pManager->GetOutput()->PrintMsg("Cannot place component here (overlap)");
+		return; // Stop execution
+	}
+
+
 	NOR2* pA = new NOR2(GInfo, NOR2_FANOUT);
 	pManager->AddComponent(pA);
+	pManager->UpdateInterface();
 }
 
 void AddNORgate2::Undo()

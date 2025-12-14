@@ -61,6 +61,16 @@ void AddConnection::Execute()
     gfxConn.y1 = (srcGfx.y1 + srcGfx.y2) / 2;
     gfxConn.x2 = dstGfx.x1;
     gfxConn.y2 = (dstGfx.y1 + dstGfx.y2) / 2;
+    //Component* overlap = pManager->GetOverlap(gfxConn.x1, gfxConn.y1, gfxConn.x2, gfxConn.y2);
+    //if (overlap)
+    //{
+    //     Show message to user
+    //    pManager->GetOutput()->PrintMsg("Cannot place component here (overlap)");
+
+    //    return; // Stop execution
+    //}
+
+ 
 
     // Create the connection
     Connection* pConn = new Connection(gfxConn, srcPin, dstPin);

@@ -45,7 +45,7 @@ public:
 	Component* Getcomponent(int index);
 	int GetComponentCount();
 	Component* GetComponent(int x, int y);
-	bool isOverlab(int x1, int y1, int x2, int y2);
+	Component* GetOverlap(int x1, int y1, int x2, int y2);
 	Input* GetInput();
 
 	//Adds a new component to the list of components
@@ -66,6 +66,7 @@ public:
 	void SetSelectedComponent(Component* comp);
 	void UnselectComponent(Component* comp);
 	void RemoveComponent(Component* comp);
+	void RemoveComponentConnections(Component* comp);
 	void SetClipboard(Component* comp);
 	Component* GetClipboard() const;
 

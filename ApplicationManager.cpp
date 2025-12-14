@@ -14,10 +14,12 @@
 #include "AddBUFFgate.h"
 #include "AddINVgate.h"
 #include "AddLED.h"
+# include "AddSwitch.h"
 #include "SelectAction.h"
 #include "AddConnection.h"
 #include "Delete.h"
 #include "Copy.h"
+# include "Cut.h"
 #include "Paste.h"
 #include "Move.h"
 #include "AddLabel.h"
@@ -139,6 +141,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_LED:
 			pAct = new AddLED(this);
 			break;
+		case ADD_Switch:
+			pAct = new AddSwitch(this);
+			break;
 
 		case ADD_CONNECTION:
 			pAct = new AddConnection(this);
@@ -154,6 +159,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case COPY:
 			pAct = new Copy(this);
+			break;
+		case CUT:
+			pAct = new Cut(this);
 			break;
 
 		case PASTE:
@@ -244,20 +252,20 @@ Component* ApplicationManager::GetComponent(int x, int y)
 	return nullptr; // No component found at the given coordinates
 }
 
-bool ApplicationManager::isOverlab(int x1, int y1, int x2, int y2)
+Component* ApplicationManager::GetOverlap(int x1, int y1, int x2, int y2)
 {
-	// Loop through all components
-	for (int i = 0; i < CompCount; i++)  // CompCount = number of components
+	for (int i = 0; i < CompCount; i++)
 	{
-		Component* comp = CompList[i];  // your array/list of components
+		Component* comp = CompList[i];
 		GraphicsInfo g = comp->GetGraphicsInfo();
 
 		// Check overlap
 		if (!(x2 < g.x1 || x1 > g.x2 || y2 < g.y1 || y1 > g.y2))
-			return false; // Overlap detected
+			return comp;  // Return the overlapped component
 	}
-	return true; // No overlap
+	return nullptr; // No overlap
 }
+
 
 
 ////////////////////////////////////////////////////////////////////
@@ -487,3 +495,4 @@ void ApplicationManager::RemoveComponent(Component* C)
 	}
 
 }
+
