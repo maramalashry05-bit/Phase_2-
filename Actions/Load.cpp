@@ -18,7 +18,7 @@ void Load::ReadActionParameters()
     Input* pIn = pManager->GetInput();
 
     pOut->PrintMsg("Action: Load Circuit. Enter filename to load from:");
-    FileName = pIn->GetFileName(pOut);
+    FileName = pIn->GetSrting(pOut);
     pOut->ClearStatusBar();
 }
 

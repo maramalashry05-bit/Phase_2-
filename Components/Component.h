@@ -13,16 +13,17 @@
 class Component
 {
 private:
-	GraphicsInfo m_GfxInfo;
-	bool isSelected=false;
+	
 	Label m_Label;
-     int m_ID=0;
+     int m_ID;
+	 static int NextAvailableID;
 
 
 protected:
 	GraphicsInfo m_GfxInfo;	//The parameters required to draw a component
 	bool isSelected;
 public:
+	static void ResetIDCounter();
 	Component(const GraphicsInfo &r_GfxInfo);
 	virtual void Operate() = 0;	//Calculates the output according to the inputs
 	virtual void Draw(Output* pOut) = 0;	//for each component to Draw itself
@@ -53,7 +54,7 @@ public:
 	void SetLabel(const std::string& text) { m_Label.SetText(text); }
 	const std::string& GetLabel() const { return m_Label.GetText(); }
 	bool isLapelEmp() { return m_Label.Empty(); };
-	Component();	
+	
 	
 	//Destructor must be virtual
 	virtual ~Component();

@@ -18,7 +18,7 @@ void Save::ReadActionParameters()
 
     pOut->PrintMsg("Action: Save Circuit. Enter filename to save to:");
     // Assuming GetFileName() is a method in Input that takes an Output pointer
-    FileName = pIn->GetFileName(pOut);
+    FileName = pIn->GetSrting(pOut);
     pOut->ClearStatusBar();
 }
 

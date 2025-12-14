@@ -1,12 +1,29 @@
 #include "Component.h"
+#include <string>
+
+int Component::NextAvailableID = 1;
 
 Component::Component(const GraphicsInfo &r_GfxInfo)
+	:m_GfxInfo(r_GfxInfo),
+		isSelected(false),
+		m_ID(NextAvailableID++)
 {
-	m_GfxInfo = r_GfxInfo;	
-	isSelected = false;
-	m_ID = 0;
+	
 }
 
+
+Component::Component() 
+	: isSelected(false),
+	m_ID(NextAvailableID++)
+{ 
+	
+}
+
+void Component::ResetIDCounter()
+{
+	// Resets the counter to 1, ready for loading a new circuit
+	NextAvailableID = 1;
+}
 
 
 GraphicsInfo Component::GetGraphicsInfo()
@@ -14,11 +31,6 @@ GraphicsInfo Component::GetGraphicsInfo()
 	return m_GfxInfo;
 }
 
-Component::Component() 
-{ 
-	isSelected = false;
-	m_ID = 0;
-}
 
 	void Component:: Setselected(bool s) 
 	{ 

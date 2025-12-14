@@ -25,7 +25,7 @@ public:
 
 virtual void Save(std::ofstream& outfile, int compID) const;
 virtual void Load(std::ifstream& infile) override = 0;
-
+virtual ~Gate();
 
 };
 

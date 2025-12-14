@@ -309,9 +309,9 @@ void ApplicationManager::LoadAll(std::ifstream& InFile)
 		GraphicsInfo GfxInfo; 
 
 		
-		if (CompType == "AND2") pComp = new AddANDgate2(GfxInfo);
-		else if (CompType == "OR2") pComp = new AddORgate2(GfxInfo);.
-		else if (CompType == "LED") pComp = new AddLED(GfxInfo);
+		if (CompType == "AND2") pComp = new AND2(GfxInfo);
+		else if (CompType == "OR2") pComp = new OR2(GfxInfo);
+		else if (CompType == "LED") pComp = new LED(GfxInfo);
 
 		if (pComp)
 		{

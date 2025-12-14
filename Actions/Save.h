@@ -9,7 +9,7 @@ private:
 	std::string FileName;
 public:
 	Save(ApplicationManager* pApp); // ADDED: Constructor declaration
-	virtual void ReadActionParameters();
-	virtual void Execute();
+	virtual void ReadActionParameters() override;
+	virtual void Execute() override;
 
 };
