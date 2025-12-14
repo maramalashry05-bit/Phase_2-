@@ -8,6 +8,7 @@
 #include "Components\Component.h"
 #include <fstream> 
 #include "Actions\Probing.h"
+#include "Actions\DesignMode.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager

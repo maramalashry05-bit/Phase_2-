@@ -23,6 +23,7 @@
 #include "AddLabel.h"
 #include "EditLabel.h"
 #include "Actions\Probing.h"
+#include "Actions\DesignMode.h"
 #include "Components/Connection.h"
 //#include "Save.h"     
 //#include "Load.h"      
@@ -171,8 +172,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case EDIT_Label:
 			pAct = new EditLabel(this);
 			break;
-		case PROBE: // Assuming PROBE is an enumeration value in Defs.h
+		case PROBE: 
 			pAct = new Probing(this);
+			break;
+		case DESIGN_MODE: // Assuming this is the enum value in Defs.h
+			pAct = new DesignMode(this);
 			break;
 
 		/*case SAVE: 

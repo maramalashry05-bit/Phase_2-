@@ -250,6 +250,9 @@
     <ClCompile Include="Actions\Probing.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\DesignMode.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -460,6 +463,9 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="Switch.h" />
     <ClInclude Include="Actions\Probing.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\DesignMode.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

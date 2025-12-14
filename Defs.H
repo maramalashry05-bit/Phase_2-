@@ -61,6 +61,8 @@ enum ActionType
 	// --- ADD THIS ACTION TYPE ---
 	PROBE,			// Probing Action
 	// --------------------------
+	DESIGN_MODE,	// Switch back to design mode
+	// --------------------------
 
 	EXIT,				// Exit the application
 

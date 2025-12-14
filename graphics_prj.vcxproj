@@ -132,6 +132,7 @@
     <ClCompile Include="Actions\Load.cpp" />
     <ClCompile Include="Actions\Save.cpp" />
     <ClCompile Include="Actions\Probing.cpp" />
+    <ClCompile Include="Actions\DesignMode.cpp" />
     <ClCompile Include="AddANDgate3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -237,6 +238,7 @@
     <ClInclude Include="Actions\AddANDgate2.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Actions\DesignMode.h" />
     <ClInclude Include="Actions\Probing.h" />
     <ClInclude Include="Actions\Load.h" />
     <ClInclude Include="Actions\Save.h" />
