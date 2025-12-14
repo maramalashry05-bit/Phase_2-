@@ -58,12 +58,17 @@ enum ActionType
 	DSN_MODE,			// Switch to Design mode
 	SIM_MODE,			// Switch to Simulation mode
 
+	// --- ADD THIS ACTION TYPE ---
+	PROBE,			// Probing Action
+	// --------------------------
+
 	EXIT,				// Exit the application
 
 	STATUS_BAR,			// A click on the status bar
 
 	DSN_TOOL,			// A click on an empty place in the design tool bar
 	SIM_TOOL			// A click on an empty place in the simulation tool bar
+
 };
 
 //Possible Status for the pin

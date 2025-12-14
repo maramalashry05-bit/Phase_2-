@@ -22,6 +22,7 @@
 #include "Move.h"
 #include "AddLabel.h"
 #include "EditLabel.h"
+#include "Actions\Probing.h"
 #include "Components/Connection.h"
 //#include "Save.h"     
 //#include "Load.h"      
@@ -170,6 +171,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case EDIT_Label:
 			pAct = new EditLabel(this);
 			break;
+		case PROBE: // Assuming PROBE is an enumeration value in Defs.h
+			pAct = new Probing(this);
+			break;
 
 		/*case SAVE: 
 			pAct = new Save(this);
@@ -226,6 +230,18 @@ Component* ApplicationManager::Getcomponent(int index)
 int ApplicationManager::GetComponentCount()
 {
 	return CompCount;
+}
+
+Component* ApplicationManager::GetComponent(int x, int y)
+{
+	for (int i = 0; i < CompCount; i++)
+	{
+		if (CompList[i]->IsInside(x, y))
+		{
+			return CompList[i];
+		}
+	}
+	return nullptr; // No component found at the given coordinates
 }
 
 bool ApplicationManager::isOverlab(int x1, int y1, int x2, int y2)

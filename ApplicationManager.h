@@ -7,6 +7,7 @@
 #include "Actions\Action.h"
 #include "Components\Component.h"
 #include <fstream> 
+#include "Actions\Probing.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
@@ -43,6 +44,7 @@ public:
 	Output* GetOutput();
 	Component* Getcomponent(int index);
 	int GetComponentCount();
+	Component* GetComponent(int x, int y);
 	bool isOverlab(int x1, int y1, int x2, int y2);
 	Input* GetInput();
 
