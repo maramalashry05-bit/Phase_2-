@@ -29,7 +29,7 @@ public:
     void SetState(bool state);
 
     // Clone function for copy/paste
-    virtual Component* Clone() const override;
+   /* virtual Component* Clone() const override;*/
 };
 
 #endif

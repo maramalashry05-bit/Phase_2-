@@ -52,8 +52,8 @@ public:
 	void unselectAll();
 	Component* GetComponentAt(int x, int y);
 
-	void SaveAll(std::ofstream& OutFile) const;
-	void LoadAll(std::ifstream& InFile);
+	/*void SaveAll(std::ofstream& OutFile) const;
+	void LoadAll(std::ifstream& InFile);*/
 	void ClearCircuit();
 	Component* FindComponentByID(int ID) const;
 

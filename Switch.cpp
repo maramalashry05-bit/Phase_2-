@@ -66,7 +66,7 @@ void Switch::SetState(bool state)
     Operate();
 }
 
-Component* Switch::Clone() const
-{
-    return new Switch(*this); // copy constructor
-}
+//Component* Switch::Clone() const
+//{
+//    return new Switch(*this); // copy constructor
+//}

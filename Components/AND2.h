@@ -16,8 +16,8 @@ public:
 	virtual void Operate();	//Calculates the output of the AND gate
 	virtual void Draw(Output* pOut);	//Draws 2-input gate
 
-	virtual void Save(std::ofstream& outfile, int compID) const;
-	virtual void Load(std::ifstream& infile);
+	/*virtual void Save(std::ofstream& outfile, int compID) const;
+	virtual void Load(std::ifstream& infile);*/
 
 	virtual int GetOutPinStatus();	//returns status of outputpin if LED, return -1
 	

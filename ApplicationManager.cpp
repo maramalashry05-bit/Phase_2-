@@ -23,9 +23,9 @@
 #include "AddLabel.h"
 #include "EditLabel.h"
 #include "Components/Connection.h"
-#include "Save.h"     
-#include "Load.h"      
-#include <fstream>
+//#include "Save.h"     
+//#include "Load.h"      
+//#include <fstream>
 
 
 ApplicationManager::ApplicationManager()
@@ -171,13 +171,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new EditLabel(this);
 			break;
 
-		case SAVE: 
+		/*case SAVE: 
 			pAct = new Save(this);
 			break;
 
 		case LOAD: 
 			pAct = new Load(this);
-			break;
+			break;*/
 
 		case EXIT:
 			///TODO: create ExitAction here
@@ -260,92 +260,92 @@ Component* ApplicationManager::GetSelectedComponent() const
 	return SelectedComponent[i];
 }
 
-void ApplicationManager::SaveAll(std::ofstream& OutFile) const
-{
-    // Write Component Count (Only Gates/LEDs/Switches)
-    int NonConnCompCount = 0;
-    for (int i = 0; i < CompCount; i++)
-    {
-        if (CompList[i] && !dynamic_cast<Connection*>(CompList[i]))
-            NonConnCompCount++;
-    }
-    OutFile << NonConnCompCount << std::endl;
-
-    // Write Component Data (Gates/LEDs/Switches)
-    int CurrentID = 1;
-    for (int i = 0; i < CompCount; i++)
-    {
-        if (CompList[i] && !dynamic_cast<Connection*>(CompList[i]))
-        {
-            // This calls the specific Save() function for each gate/LED/Switch
-            CompList[i]->Save(OutFile, CurrentID++); 
-        }
-    }
-    OutFile << "Connections" << std::endl; //seperator
-
-    // Write Connections
-    for (int i = 0; i < CompCount; i++)
-    {
-        if (Connection* conn = dynamic_cast<Connection*>(CompList[i]))
-        {
-            conn->Save(OutFile, 0); 
-        }
-    }
-    OutFile << -1 << std::endl; //terminator
-}
-void ApplicationManager::LoadAll(std::ifstream& InFile)
-{
-	
-
-	// Load Components (Gates/LEDs/Switches)
-	int CompCountFromFile;
-	InFile >> CompCountFromFile;
-
-	std::string CompType;
-	for (int i = 0; i < CompCountFromFile; i++)
-	{
-		InFile >> CompType;
-		Component* pComp = nullptr;
-		GraphicsInfo GfxInfo; 
-
-		
-		if (CompType == "AND2") pComp = new AND2(GfxInfo);
-		else if (CompType == "OR2") pComp = new OR2(GfxInfo);
-		else if (CompType == "LED") pComp = new LED(GfxInfo);
-
-		if (pComp)
-		{
-			pComp->Load(InFile);
-			AddComponent(pComp);
-		}
-	}
-
-	// Load Connections
-	InFile >> CompType; // Reads "Connections"
-
-	int SrcID, DstID, PinNum;
-	while (InFile >> SrcID && SrcID != -1)
-	{
-		InFile >> DstID >> PinNum;
-
-		Component* pSrcComp = FindComponentByID(SrcID);
-		Component* pDstComp = FindComponentByID(DstID);
-
-		if (pSrcComp && pDstComp)
-		{
-			OutputPin* pSrcPin = pSrcComp->GetOutputPin();
-			InputPin* pDstPin = pDstComp->GetInputPin(PinNum);
-
-			GraphicsInfo GfxInfo;
-			Connection* pConn = new Connection(GfxInfo, pSrcPin, pDstPin);
-
-			pDstPin->setConnection(pConn);
-			pSrcPin->ConnectTo(pConn);
-
-			AddComponent(pConn);
-		}
-	}
-}
+//void ApplicationManager::SaveAll(std::ofstream& OutFile) const
+//{
+//    // Write Component Count (Only Gates/LEDs/Switches)
+//    int NonConnCompCount = 0;
+//    for (int i = 0; i < CompCount; i++)
+//    {
+//        if (CompList[i] && !dynamic_cast<Connection*>(CompList[i]))
+//            NonConnCompCount++;
+//    }
+//    OutFile << NonConnCompCount << std::endl;
+//
+//    // Write Component Data (Gates/LEDs/Switches)
+//    int CurrentID = 1;
+//    for (int i = 0; i < CompCount; i++)
+//    {
+//        if (CompList[i] && !dynamic_cast<Connection*>(CompList[i]))
+//        {
+//            // This calls the specific Save() function for each gate/LED/Switch
+//            CompList[i]->Save(OutFile, CurrentID++); 
+//        }
+//    }
+//    OutFile << "Connections" << std::endl; //seperator
+//
+//    // Write Connections
+//    for (int i = 0; i < CompCount; i++)
+//    {
+//        if (Connection* conn = dynamic_cast<Connection*>(CompList[i]))
+//        {
+//            conn->Save(OutFile, 0); 
+//        }
+//    }
+//    OutFile << -1 << std::endl; //terminator
+//}
+//void ApplicationManager::LoadAll(std::ifstream& InFile)
+//{
+//	
+//
+//	// Load Components (Gates/LEDs/Switches)
+//	int CompCountFromFile;
+//	InFile >> CompCountFromFile;
+//
+//	std::string CompType;
+//	for (int i = 0; i < CompCountFromFile; i++)
+//	{
+//		InFile >> CompType;
+//		Component* pComp = nullptr;
+//		GraphicsInfo GfxInfo; 
+//
+//		
+//		if (CompType == "AND2") pComp = new AND2(GfxInfo);
+//		else if (CompType == "OR2") pComp = new OR2(GfxInfo);
+//		else if (CompType == "LED") pComp = new LED(GfxInfo);
+//
+//		if (pComp)
+//		{
+//			pComp->Load(InFile);
+//			AddComponent(pComp);
+//		}
+//	}
+//
+//	// Load Connections
+//	InFile >> CompType; // Reads "Connections"
+//
+//	int SrcID, DstID, PinNum;
+//	while (InFile >> SrcID && SrcID != -1)
+//	{
+//		InFile >> DstID >> PinNum;
+//
+//		Component* pSrcComp = FindComponentByID(SrcID);
+//		Component* pDstComp = FindComponentByID(DstID);
+//
+//		if (pSrcComp && pDstComp)
+//		{
+//			OutputPin* pSrcPin = pSrcComp->GetOutputPin();
+//			InputPin* pDstPin = pDstComp->GetInputPin(PinNum);
+//
+//			GraphicsInfo GfxInfo;
+//			Connection* pConn = new Connection(GfxInfo, pSrcPin, pDstPin);
+//
+//			pDstPin->setConnection(pConn);
+//			pSrcPin->ConnectTo(pConn);
+//
+//			AddComponent(pConn);
+//		}
+//	}
+//}
 
 void ApplicationManager::ClearCircuit()
 {
