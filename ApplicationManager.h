@@ -6,6 +6,7 @@
 #include "GUI\Input.h"
 #include "Actions\Action.h"
 #include "Components\Component.h"
+#include <fstream> 
 
 //Main class that manages everything in the application.
 class ApplicationManager
@@ -50,6 +51,12 @@ public:
 
 	void unselectAll();
 	Component* GetComponentAt(int x, int y);
+
+	void SaveAll(std::ofstream& OutFile) const;
+	void LoadAll(std::ifstream& InFile);
+	void ClearCircuit();
+	Component* FindComponentByID(int ID) const;
+
 	//destructor
 	~ApplicationManager();
 
