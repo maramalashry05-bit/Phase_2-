@@ -253,6 +253,9 @@
     <ClCompile Include="Actions\DesignMode.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\Exit.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -466,6 +469,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\DesignMode.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Exit.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

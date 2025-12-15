@@ -24,6 +24,7 @@
 #include "EditLabel.h"
 #include "Actions\Probing.h"
 #include "Actions\DesignMode.h"
+// #include "Exit.h" // Commented out because "Exit.h" does not exist or is not needed
 #include "Components/Connection.h"
 //#include "Save.h"     
 //#include "Load.h"      
@@ -79,6 +80,10 @@ void ApplicationManager::SetClipboard(Component* comp)
 Component* ApplicationManager::GetClipboard() const
 {
 	return Clipboard;
+}
+
+void ApplicationManager::Exit()
+{
 }
 
 

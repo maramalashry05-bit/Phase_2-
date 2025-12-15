@@ -8,6 +8,7 @@
 #include "Components\Component.h"
 #include <fstream> 
 #include "Actions\Probing.h"
+// #include "Exit.h" // Commented out because "Exit.h" does not exist or is not needed
 #include "Actions\DesignMode.h"
 
 //Main class that manages everything in the application.
@@ -69,7 +70,7 @@ public:
 	void RemoveComponent(Component* comp);
 	void SetClipboard(Component* comp);
 	Component* GetClipboard() const;
-
+	void Exit();
 };
 
 #endif
