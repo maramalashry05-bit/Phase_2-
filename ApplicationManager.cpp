@@ -84,6 +84,9 @@ Component* ApplicationManager::GetClipboard() const
 
 void ApplicationManager::Exit()
 {
+	delete [] CompList;
+	delete OutputInterface;
+	delete InputInterface;
 }
 
 
