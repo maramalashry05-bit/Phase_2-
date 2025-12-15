@@ -130,10 +130,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Actions\Load.cpp" />
-    <ClCompile Include="Actions\Save.cpp" />
     <ClCompile Include="Actions\Probing.cpp" />
     <ClCompile Include="Actions\DesignMode.cpp" />
     <ClCompile Include="Actions\Exit.cpp" />
+    <ClCompile Include="Actions\Save.cpp" />
     <ClCompile Include="AddANDgate3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>

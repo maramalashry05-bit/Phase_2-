@@ -28,36 +28,35 @@ void LED::Draw(Output* pOut)
     pOut->DrawLED(m_GfxInfo, m_isOn, isSelected);
 }
 
-//void LED::Save(std::ofstream& outfile, int compID) const 
-//{
-//   
-//    const_cast<LED*>(this)->SetID(compID);
-//
-//    outfile << "LED\t";
-//    outfile << compID << "\t";
-//    outfile << GetLabel() << "\t";
-//
-//    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
-//}
-//
-//void LED::Load(std::ifstream& infile) 
-//{
-//   
-//    int id;
-//    infile >> id;
-//    SetID(id);
-//
-//    
-//    std::string label;
-//    infile >> label;
-//    SetLabel(label);
-//
-//    
-//    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
-//
-//    
-//    m_isOn = false;
-//}
+void LED::save(std::ofstream& outfile, int compid) const 
+{
+   
+   
+    outfile << "led\t";
+    outfile << compid << "\t";
+    outfile << GetLabel() << "\t";
+
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void LED::load(std::ifstream& infile) 
+{
+   
+    int id;
+    infile >> id;
+    SetID(id);
+
+    
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+    
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+    
+    m_isOn = false;
+}
 
 
 // LED has no output pin -> return -1 or nullptr as appropriate

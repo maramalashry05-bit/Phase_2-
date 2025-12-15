@@ -30,26 +30,24 @@ InputPin* Connection::GetInputPin(int n)
 	return NULL;
 }
 
-//void Connection::Save(std::ofstream& outfile, int compID) const
-//{
-//
-//    int srcID = SrcPin->getComponent()->GetID();
-//
-//
-//    int dstID = DstPin->getComponent()->GetID();
-//
-//
-//	int pinNum = DstPin->getInputNumber();
-//
-//    outfile << srcID << "\t";
-//    outfile << dstID << "\t";
-//    outfile << pinNum << std::endl;
-//}
-//
-//void Connection::Load(std::ifstream& infile)
-//{
-//
-//}
+void Connection::save(std::ofstream& outfile, int compID) const
+{
+
+    int srcID = SrcPin->getComponent()->GetID();
+
+	int dstID = DstPin->getComponent()->GetID();
+
+	int pinNum = DstPin->getInputNumber();
+
+    outfile << srcID << "\t";
+    outfile << dstID << "\t";
+    outfile << pinNum << std::endl;
+}
+
+void Connection::load(std::ifstream& infile)
+{
+
+}
 
 
 void Connection::Operate()

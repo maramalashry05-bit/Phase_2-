@@ -35,35 +35,33 @@ void BUFF::Draw(Output* pOut)
 
 
 
-//void BUFF::Save(std::ofstream& outfile, int compID) const 
-//{
-//    
-//    const_cast<BUFF*>(this)->SetID(compID);
-//
-//    outfile << "BUFF\t";
-//    outfile << compID << "\t";
-//    outfile << GetLabel() << "\t";
-//
-//    
-//    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
-//}
-//
-//void BUFF::Load(std::ifstream& infile) 
-//{
-//   
-//    int id;
-//    infile >> id;
-//    SetID(id);
-//
-//    std::string label;
-//    infile >> label;
-//    SetLabel(label);
-//
-//    
-//    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
-//
-//   
-//}
+void BUFF::save(std::ofstream& outfile, int compid) const 
+{
+    
+    outfile << "BUFF\t";
+    outfile << compid << "\t";
+    outfile << GetLabel() << "\t";
+
+    
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void BUFF::load(std::ifstream& infile) 
+{
+   
+    int id;
+    infile >> id;
+    SetID(id);
+
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+    
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+   
+}
 
 
 //returns status of outputpin

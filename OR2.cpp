@@ -33,37 +33,37 @@ void OR2::Draw(Output* pOut)
 
 }
 
-//void OR2::Save(std::ofstream& outfile, int compID) const
-//{
-//   
-//    const_cast<OR2*>(this)->SetID(compID);
-//
-//   
-//    outfile << "OR2\t";
-//    outfile << compID << "\t";
-//    outfile << GetLabel() << "\t";
-//
-//   
-//    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
-//}
-//
-//void OR2::Load(std::ifstream& infile) 
-//{
-//    
-//    int id;
-//    infile >> id;
-//    SetID(id);
-//
-//    
-//    std::string label;
-//    infile >> label;
-//    SetLabel(label);
-//
-//   
-//    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
-//
-//    
-//}
+void OR2::save(std::ofstream& outfile, int compID) const
+{
+   
+  
+
+   
+    outfile << "OR2\t";
+    outfile << compID << "\t";
+    outfile << GetLabel() << "\t";
+
+   
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void OR2::load(std::ifstream& infile) 
+{
+    
+    int id;
+    infile >> id;
+    SetID(id);
+
+    
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+   
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+    
+}
 
 //returns status of outputpin
 int OR2::GetOutPinStatus()

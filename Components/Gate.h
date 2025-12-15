@@ -23,8 +23,8 @@ protected:
 public:
 	Gate(int r_Inputs, int r_FanOut);
 
-//virtual void Save(std::ofstream& outfile, int compID) const;
-//virtual void Load(std::ifstream& infile) override = 0;
+virtual void save(std::ofstream& outfile, int compID) const;
+virtual void load(std::ifstream& infile) override = 0;
 virtual ~Gate();
 
 };

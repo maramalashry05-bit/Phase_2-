@@ -33,8 +33,8 @@ public:
 	Component();
 
 
-	/*virtual void Save(std::ofstream& outfile, int compID) const = 0;
-	virtual void Load(std::ifstream& infile) = 0;*/
+	virtual void save(std::ofstream& outfile, int compid) const = 0;
+	virtual void load(std::ifstream& infile) = 0;
 	void SetID(int id) { m_ID = id; }
 	int GetID() const { return m_ID; } 
 

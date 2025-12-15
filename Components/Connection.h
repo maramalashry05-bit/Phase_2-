@@ -18,8 +18,8 @@ public:
 	virtual void Operate();	//Calculates the output according to the inputs
 	virtual void Draw(Output* pOut);	//for each component to Draw itself
 
-	/*virtual void Save(std::ofstream& outfile, int compID) const;
-	virtual void Load(std::ifstream& infile);*/
+	virtual void save(std::ofstream& outfile, int compid) const;
+	virtual void load(std::ifstream& infile);
 
 	
 	void setSourcePin(OutputPin *pSrcPin);
