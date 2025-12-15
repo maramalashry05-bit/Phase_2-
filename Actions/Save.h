@@ -11,7 +11,7 @@ public:
 	Save(ApplicationManager* pApp); // ADDED: Constructor declaration
 	virtual void ReadActionParameters() override;
 	virtual void Execute() override;
-	virtual void Undo();
-	virtual void Redo();
+	virtual void Undo() {}
+	virtual void Redo() {}		
 
 };

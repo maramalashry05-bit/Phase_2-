@@ -239,14 +239,6 @@
     <ClCompile Include="Paste.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\Load.cpp" />
-    <ClCompile Include="Actions\Save.cpp" />
-    <ClCompile Include="AddLabel.cpp" />
-    <ClCompile Include="AddSwitch.cpp" />
-    <ClCompile Include="EditLabel.cpp" />
-    <ClCompile Include="Label.cpp" />
-    <ClCompile Include="Move.cpp" />
-    <ClCompile Include="Switch.cpp" />
     <ClCompile Include="Actions\Probing.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -254,6 +246,30 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\Exit.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AddSwitch.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AddLabel.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="EditLabel.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\Load.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\Save.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Switch.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -457,14 +473,6 @@
     <ClInclude Include="Paste.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\Load.h" />
-    <ClInclude Include="Actions\Save.h" />
-    <ClInclude Include="AddLabel.h" />
-    <ClInclude Include="AddSwitch.h" />
-    <ClInclude Include="EditLabel.h" />
-    <ClInclude Include="Label.h" />
-    <ClInclude Include="Move.h" />
-    <ClInclude Include="Switch.h" />
     <ClInclude Include="Actions\Probing.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -472,6 +480,30 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\Exit.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddSwitch.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddLabel.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="EditLabel.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Load.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Save.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Switch.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
