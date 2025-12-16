@@ -232,6 +232,7 @@
     <ClCompile Include="Paste.cpp" />
     <ClCompile Include="SelectAction.cpp" />
     <ClCompile Include="Switch.cpp" />
+    <ClCompile Include="SwitchToSimulation.cpp" />
     <ClCompile Include="XNOR2.cpp" />
     <ClCompile Include="XNOR3.cpp" />
     <ClCompile Include="XOR2.cpp" />
@@ -332,6 +333,7 @@
     <ClInclude Include="Paste.h" />
     <ClInclude Include="SelectAction.h" />
     <ClInclude Include="Switch.h" />
+    <ClInclude Include="SwitchToSimulation.h" />
     <ClInclude Include="XNOR2.h" />
     <ClInclude Include="XNOR3.h" />
     <ClInclude Include="XOR2.h" />

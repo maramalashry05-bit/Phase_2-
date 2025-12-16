@@ -27,9 +27,9 @@ private:
 	Input* InputInterface; //pointer to the Input Clase Interface
 	Component* SelectedComponent[MaxCompCount] ;
 	Component* Clipboard=nullptr ;  // stores the copied component
+	
 
 
-public:
 
 
 public:	
@@ -76,6 +76,7 @@ public:
 	void SetClipboard(Component* comp);
 	Component* GetClipboard() const;
 	void Exit();
+
 };
 
 #endif

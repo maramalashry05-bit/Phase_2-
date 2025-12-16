@@ -30,6 +30,8 @@ public:
 
     // Clone function for copy/paste
     virtual Component* Clone() const override;
+    virtual void save(std::ofstream& outfile, int compid) const;
+    virtual void load(std::ifstream& infile);
 };
 
 #endif

@@ -39,6 +39,7 @@ ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
 	SelectedCount = 0;
+	
 
 	for(int i=0; i<MaxCompCount; i++)
 		CompList[i] = NULL;

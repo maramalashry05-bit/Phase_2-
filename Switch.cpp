@@ -70,3 +70,32 @@ Component* Switch::Clone() const
 {
     return new Switch(*this); // copy constructor
 }
+void Switch::save(std::ofstream& outfile, int compid) const
+{
+
+
+    outfile << "led\t";
+    outfile << compid << "\t";
+    outfile << GetLabel() << "\t";
+
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void Switch::load(std::ifstream& infile)
+{
+
+    int id;
+    infile >> id;
+    SetID(id);
+
+
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+
+    m_State = false;
+}
