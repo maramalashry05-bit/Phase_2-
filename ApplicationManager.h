@@ -75,6 +75,9 @@ public:
 	void RemoveComponentConnections(Component* comp);
 	void SetClipboard(Component* comp);
 	Component* GetClipboard() const;
+	Component* GetSelectedComponent(int index) const;
+public:
+    int GetSelectedCount() const { return SelectedCount; }
 	void Exit();
 
 };

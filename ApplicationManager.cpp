@@ -304,9 +304,11 @@ ApplicationManager::~ApplicationManager()
 }
 Component* ApplicationManager::GetSelectedComponent() const
 {
-	for(int i =0;i< CompCount;i++)
-	return SelectedComponent[i];
+	if (SelectedCount > 0)
+		return SelectedComponent[0];
+	return nullptr;
 }
+
 
 void ApplicationManager::SaveAll(std::ofstream& OutFile) const
 {
