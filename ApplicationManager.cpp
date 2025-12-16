@@ -24,11 +24,15 @@
 #include "Move.h"
 #include "AddLabel.h"
 #include "EditLabel.h"
+#include "EditConnection.h"
 #include "Actions\Probing.h"
+#include "Actions\DesignMode.h"
+// #include "Exit.h" // Commented out because "Exit.h" does not exist or is not needed
 #include "Components/Connection.h"
-//#include "Save.h"     
-//#include "Load.h"      
-//#include <fstream>
+#include "Actions/Save.h"     
+#include "Actions/Load.h"      
+#include <fstream>
+#include "Actions/Validation.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -80,6 +84,13 @@ void ApplicationManager::SetClipboard(Component* comp)
 Component* ApplicationManager::GetClipboard() const
 {
 	return Clipboard;
+}
+
+void ApplicationManager::Exit()
+{
+	delete [] CompList;
+	delete OutputInterface;
+	delete InputInterface;
 }
 
 
@@ -179,17 +190,29 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case EDIT_Label:
 			pAct = new EditLabel(this);
 			break;
-		case PROBE: // Assuming PROBE is an enumeration value in Defs.h
-			pAct = new Probing(this);
+		
+		case EDIT_Connection:
+			pAct = new EditConnection(this);
 			break;
 
-		/*case SAVE: 
+		case PROBE: 
+			pAct = new Probing(this);
+			break;
+		case DESIGN_MODE:
+			pAct = new DesignMode(this);
+			break;
+
+		case SAVE: 
 			pAct = new Save(this);
 			break;
 
 		case LOAD: 
 			pAct = new Load(this);
-			break;*/
+			break;
+
+		case Check_Validation: 
+			pAct = new Validation(this);
+			break;
 
 		case EXIT:
 			///TODO: create ExitAction here
@@ -215,13 +238,13 @@ void ApplicationManager::UpdateInterface()
 }
 
 ////////////////////////////////////////////////////////////////////
-Input* ApplicationManager::GetInput()
+Input* ApplicationManager::GetInput() 
 {
 	return InputInterface;
 }
 
 ////////////////////////////////////////////////////////////////////
-Output* ApplicationManager::GetOutput()
+Output* ApplicationManager::GetOutput() 
 {
 	return OutputInterface;
 }
@@ -235,10 +258,10 @@ Component* ApplicationManager::Getcomponent(int index)
 		}
 	}
 }
-int ApplicationManager::GetComponentCount()
+int ApplicationManager::GetComponentCount() 
 {
 	return CompCount;
-}
+} 
 
 Component* ApplicationManager::GetComponent(int x, int y)
 {
@@ -284,92 +307,93 @@ Component* ApplicationManager::GetSelectedComponent() const
 	return SelectedComponent[i];
 }
 
-//void ApplicationManager::SaveAll(std::ofstream& OutFile) const
-//{
-//    // Write Component Count (Only Gates/LEDs/Switches)
-//    int NonConnCompCount = 0;
-//    for (int i = 0; i < CompCount; i++)
-//    {
-//        if (CompList[i] && !dynamic_cast<Connection*>(CompList[i]))
-//            NonConnCompCount++;
-//    }
-//    OutFile << NonConnCompCount << std::endl;
-//
-//    // Write Component Data (Gates/LEDs/Switches)
-//    int CurrentID = 1;
-//    for (int i = 0; i < CompCount; i++)
-//    {
-//        if (CompList[i] && !dynamic_cast<Connection*>(CompList[i]))
-//        {
-//            // This calls the specific Save() function for each gate/LED/Switch
-//            CompList[i]->Save(OutFile, CurrentID++); 
-//        }
-//    }
-//    OutFile << "Connections" << std::endl; //seperator
-//
-//    // Write Connections
-//    for (int i = 0; i < CompCount; i++)
-//    {
-//        if (Connection* conn = dynamic_cast<Connection*>(CompList[i]))
-//        {
-//            conn->Save(OutFile, 0); 
-//        }
-//    }
-//    OutFile << -1 << std::endl; //terminator
-//}
-//void ApplicationManager::LoadAll(std::ifstream& InFile)
-//{
-//	
-//
-//	// Load Components (Gates/LEDs/Switches)
-//	int CompCountFromFile;
-//	InFile >> CompCountFromFile;
-//
-//	std::string CompType;
-//	for (int i = 0; i < CompCountFromFile; i++)
-//	{
-//		InFile >> CompType;
-//		Component* pComp = nullptr;
-//		GraphicsInfo GfxInfo; 
-//
-//		
-//		if (CompType == "AND2") pComp = new AND2(GfxInfo);
-//		else if (CompType == "OR2") pComp = new OR2(GfxInfo);
-//		else if (CompType == "LED") pComp = new LED(GfxInfo);
-//
-//		if (pComp)
-//		{
-//			pComp->Load(InFile);
-//			AddComponent(pComp);
-//		}
-//	}
-//
-//	// Load Connections
-//	InFile >> CompType; // Reads "Connections"
-//
-//	int SrcID, DstID, PinNum;
-//	while (InFile >> SrcID && SrcID != -1)
-//	{
-//		InFile >> DstID >> PinNum;
-//
-//		Component* pSrcComp = FindComponentByID(SrcID);
-//		Component* pDstComp = FindComponentByID(DstID);
-//
-//		if (pSrcComp && pDstComp)
-//		{
-//			OutputPin* pSrcPin = pSrcComp->GetOutputPin();
-//			InputPin* pDstPin = pDstComp->GetInputPin(PinNum);
-//
-//			GraphicsInfo GfxInfo;
-//			Connection* pConn = new Connection(GfxInfo, pSrcPin, pDstPin);
-//
-//			pDstPin->setConnection(pConn);
-//			pSrcPin->ConnectTo(pConn);
-//
-//			AddComponent(pConn);
-//		}
-//	}
-//}
+void ApplicationManager::SaveAll(std::ofstream& OutFile) const
+{
+    // Write Component Count (Only Gates/LEDs/Switches)
+    int NonConnCompCount = 0;
+    for (int i = 0; i < CompCount; i++)
+    {
+        if (CompList[i] && !dynamic_cast<Connection*>(CompList[i]))
+            NonConnCompCount++;
+    }
+    OutFile << NonConnCompCount << std::endl;
+
+    // Write Component Data (Gates/LEDs/Switches)
+    int CurrentID = 1;
+    for (int i = 0; i < CompCount; i++)
+    {
+        if (CompList[i] && !dynamic_cast<Connection*>(CompList[i]))
+        {
+            // This calls the specific Save() function for each gate/LED/Switch
+            CompList[i]->save(OutFile, CurrentID++); 
+        }
+    }
+    OutFile << "Connections" << std::endl; //seperator
+
+    // Write Connections
+    for (int i = 0; i < CompCount; i++)
+    {
+        if (Connection* conn = dynamic_cast<Connection*>(CompList[i]))
+        {
+            conn->save(OutFile, 0); 
+        }
+    }
+    OutFile << -1 << std::endl; //terminator
+}
+void ApplicationManager::LoadAll(std::ifstream& InFile)
+{
+	
+
+	// Load Components (Gates/LEDs/Switches)
+	int CompCountFromFile;
+	InFile >> CompCountFromFile;
+
+	std::string CompType;
+	for (int i = 0; i < CompCountFromFile; i++)
+	{
+		InFile >> CompType;
+		Component* pComp = nullptr;
+		GraphicsInfo GfxInfo; 
+
+		
+		if (CompType == "AND2") pComp = new AND2(GfxInfo, 1);
+		else if (CompType == "OR2") pComp = new OR2(GfxInfo,1);
+		else if (CompType == "LED") pComp = new LED(GfxInfo,1);
+
+
+		if (pComp)
+		{
+			pComp->load(InFile);
+			AddComponent(pComp);
+		}
+	}
+
+	// Load Connections
+	InFile >> CompType; // Reads "Connections"
+
+	int SrcID, DstID, PinNum;
+	while (InFile >> SrcID && SrcID != -1)
+	{
+		InFile >> DstID >> PinNum;
+
+		Component* pSrcComp = FindComponentByID(SrcID);
+		Component* pDstComp = FindComponentByID(DstID);
+
+		if (pSrcComp && pDstComp)
+		{
+			OutputPin* pSrcPin = pSrcComp->GetOutputPin();
+			InputPin* pDstPin = pDstComp->GetInputPin(PinNum);
+
+			GraphicsInfo GfxInfo;
+			Connection* pConn = new Connection(GfxInfo, pSrcPin, pDstPin);
+
+			pDstPin->setConnection(pConn);
+			pSrcPin->ConnectTo(pConn);
+
+			AddComponent(pConn);
+		}
+	}
+}
 
 void ApplicationManager::ClearCircuit()
 {
@@ -393,6 +417,60 @@ void ApplicationManager::ClearCircuit()
 
 	GetOutput()->ClearDrawingArea();
 }
+
+
+bool ApplicationManager::ValidateCircuit() 
+{
+	// Iterate through all components
+	for (int i = 0; i < CompCount; i++)
+	{
+		Component* pComp = CompList[i];
+
+		if (!pComp || dynamic_cast<Connection*>(pComp))
+			continue; // Skip null components and connections
+
+		// Check Output Pins
+		OutputPin* pOutPin = pComp->GetOutputPin();
+
+		// Check if the component has an output pin (Gates and Switches have one)
+		if (pOutPin)
+		{
+			// If the output pin exists but has zero connections, it's a floating output.
+			// LEDs do NOT have output pins, so they are skipped by this check.
+			if (pOutPin->getConnCount() == 0)
+			{
+				GetOutput()->PrintMsg("Validation FAILED: Output pin of component " + pComp->GetLabel() + " is unconnected.");
+				return false;
+			}
+		}
+
+		// Iterate through input pin indices 1, 2, 3...
+		// We'll iterate up to a high limit (e.g., 5) to safely cover all gate types.
+		for (int n = 1; n <= 5; n++)
+		{
+			InputPin* pInPin = pComp->GetInputPin(n);
+
+			// Check if the component has an input pin at this index
+			if (pInPin)
+			{
+				// If the pin exists but has no connection, the circuit is invalid (floating input).
+				
+				if (!pInPin->getConnection())
+				{
+					GetOutput()->PrintMsg("Validation FAILED: Input pin " + std::to_string(n) + " of component " + pComp->GetLabel() + " is unconnected.");
+					return false;
+				}
+			}
+		}
+	}
+
+	// If the loop completes without finding any floating pins, the circuit is valid.
+	GetOutput()->PrintMsg("Circuit Validation SUCCESS! Ready for Simulation.");
+	return true;
+}
+
+
+
 
 
 Component* ApplicationManager::FindComponentByID(int ID) const

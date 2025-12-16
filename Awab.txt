@@ -1,0 +1,4 @@
+2
+XNOR3	1		636 196
+XNOR2	2		882 352
+Connections

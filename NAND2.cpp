@@ -33,36 +33,36 @@ void NAND2::Draw(Output* pOut)
 	
 }
 
-//void NAND2::Save(std::ofstream& outfile, int compID) const 
-//{
-//  
-//   
-//    const_cast<NAND2*>(this)->SetID(compID);
-//
-//    outfile << "NAND2\t";
-//    outfile << compID << "\t";
-//    outfile << GetLabel() << "\t";
-//
-//    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
-//}
-//
-//void NAND2::Load(std::ifstream& infile) 
-//{
-//   
-//    int id;
-//    infile >> id;
-//    SetID(id);
-//
-//    
-//    std::string label;
-//    infile >> label;
-//    SetLabel(label);
-//
-//  
-//    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
-//
-//  
-//}
+void NAND2::save(std::ofstream& outfile, int compid) const 
+{
+  
+   
+    
+
+    outfile << "NAND2\t";
+    outfile << compid << "\t";
+    outfile << GetLabel() << "\t";
+
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void NAND2::load(std::ifstream& infile) 
+{
+   
+    int id;
+    infile >> id;
+    SetID(id);
+
+    
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+  
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+  
+}
 
 
 //returns status of outputpin

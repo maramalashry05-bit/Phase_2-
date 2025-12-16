@@ -34,33 +34,29 @@ void AND3::Draw(Output* pOut)
 }
 
 
-//void AND3::Save(std::ofstream& outfile, int compID) const 
-//{
-//	
-//	const_cast<AND3*>(this)->SetID(compID);
-//
-//	outfile << "AND3\t";
-//	outfile << compID << "\t";
-//	outfile << GetLabel() << "\t"; 
-//
-//	
-//	outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
-//}
-//
-//void AND3::Load(std::ifstream& infile)
-//{
-//	
-//	int id;
-//	infile >> id;
-//	SetID(id);
-//
-//	std::string label;
-//	infile >> label;
-//	SetLabel(label);
-//
-//	infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
-//
-//}
+void AND3::save(std::ofstream& outfile, int compID) const 
+{
+	
+	outfile << "AND3\t";
+	outfile << compID << "\t";
+	outfile << GetLabel() << "\t"; 
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void AND3::load(std::ifstream& infile)
+{
+	
+	int id;
+	infile >> id;
+	SetID(id);
+
+	std::string label;
+	infile >> label;
+	SetLabel(label);
+
+	infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+}
 
 
 //returns status of outputpin

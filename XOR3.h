@@ -20,8 +20,8 @@ public:
 	virtual void Operate();	//Calculates the output of the XOR3 gate
 	virtual void Draw(Output* pOut);	//Draws 3-input gate
 
-	/*virtual void Save(std::ofstream& outfile, int compID) const;
-	virtual void Load(std::ifstream& infile);*/
+	virtual void save(std::ofstream& outfile, int compID) const override;
+	virtual void load(std::ifstream& infile) override;
 
 	virtual int GetOutPinStatus();	//returns status of outputpin if LED, return -1
 	virtual int GetInputPinStatus(int n);	//returns status of Inputpin # n if SWITCH, return -1

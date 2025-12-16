@@ -1,0 +1,4 @@
+2
+INV	1		651 166
+XNOR3	2		911 232
+Connections

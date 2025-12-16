@@ -130,8 +130,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Actions\Load.cpp" />
-    <ClCompile Include="Actions\Save.cpp" />
     <ClCompile Include="Actions\Probing.cpp" />
+    <ClCompile Include="Actions\DesignMode.cpp" />
+    <ClCompile Include="Actions\Exit.cpp" />
+    <ClCompile Include="Actions\Save.cpp" />
+    <ClCompile Include="Actions\Validationcpp.cpp" />
     <ClCompile Include="AddANDgate3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -206,6 +209,7 @@
     <ClCompile Include="Copy.cpp" />
     <ClCompile Include="Cut.cpp" />
     <ClCompile Include="Delete.cpp" />
+    <ClCompile Include="EditConnection.cpp" />
     <ClCompile Include="EditLabel.cpp" />
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
@@ -238,9 +242,13 @@
     <ClInclude Include="Actions\AddANDgate2.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Actions\DesignMode.h" />
+    <ClInclude Include="Actions\Exit.h" />
+    <ClInclude Include="Actions\Header.h" />
     <ClInclude Include="Actions\Probing.h" />
     <ClInclude Include="Actions\Load.h" />
     <ClInclude Include="Actions\Save.h" />
+    <ClInclude Include="Actions\Validation.h" />
     <ClInclude Include="AddANDgate3.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
@@ -301,6 +309,7 @@
     <ClInclude Include="Cut.h" />
     <ClInclude Include="Defs.H" />
     <ClInclude Include="Delete.h" />
+    <ClInclude Include="EditConnection.h" />
     <ClInclude Include="EditLabel.h" />
     <ClInclude Include="GUI\Input.h" />
     <ClInclude Include="GUI\Output.h" />

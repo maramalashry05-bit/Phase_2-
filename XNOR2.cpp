@@ -34,35 +34,35 @@ void XNOR2::Draw(Output* pOut)
 
 }
 
-//void XNOR2::Save(std::ofstream& outfile, int compID) const 
-//{
-//   
-//    const_cast<XNOR2*>(this)->SetID(compID);
-//
-//   
-//    outfile << "XNOR2\t";
-//    outfile << compID << "\t";
-//    outfile << GetLabel() << "\t";
-//
-//    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
-//}
-//
-//void XNOR2::Load(std::ifstream& infile) 
-//{
-//  
-//    int id;
-//    infile >> id;
-//    SetID(id);
-//
-//   
-//    std::string label;
-//    infile >> label;
-//    SetLabel(label);
-//
-//   
-//    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
-//
-//}
+void XNOR2::save(std::ofstream& outfile, int compID) const 
+{
+   
+   
+
+   
+    outfile << "XNOR2\t";
+    outfile << compID << "\t";
+    outfile << GetLabel() << "\t";
+
+    outfile << m_GfxInfo.x1 << " " << m_GfxInfo.y1 << std::endl;
+}
+
+void XNOR2::load(std::ifstream& infile) 
+{
+  
+    int id;
+    infile >> id;
+    SetID(id);
+
+   
+    std::string label;
+    infile >> label;
+    SetLabel(label);
+
+   
+    infile >> m_GfxInfo.x1 >> m_GfxInfo.y1;
+
+}
 
 //returns status of outputpin
 int XNOR2::GetOutPinStatus()
