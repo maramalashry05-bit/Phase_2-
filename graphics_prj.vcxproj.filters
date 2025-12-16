@@ -275,6 +275,9 @@
     <ClCompile Include="Actions\Validationcpp.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="EditConnection.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -513,6 +516,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\Validation.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="EditConnection.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

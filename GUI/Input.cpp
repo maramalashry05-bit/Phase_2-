@@ -112,6 +112,7 @@ ActionType Input::GetUserAction() const
 			case ITM_SELECT:        return SELECT;
 			case ITM_MOVE:          return MOVE;
 			case ITM_DEL:           return DEL;
+			case ITM_EDIT_CONNECTION: return EDIT_Connection;
 
 				// FILE
 			case ITM_SAVE:          return SAVE;

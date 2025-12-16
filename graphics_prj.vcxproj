@@ -208,6 +208,7 @@
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="Copy.cpp" />
     <ClCompile Include="Delete.cpp" />
+    <ClCompile Include="EditConnection.cpp" />
     <ClCompile Include="EditLabel.cpp" />
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
@@ -306,6 +307,7 @@
     <ClInclude Include="Copy.h" />
     <ClInclude Include="Defs.H" />
     <ClInclude Include="Delete.h" />
+    <ClInclude Include="EditConnection.h" />
     <ClInclude Include="EditLabel.h" />
     <ClInclude Include="GUI\Input.h" />
     <ClInclude Include="GUI\Output.h" />

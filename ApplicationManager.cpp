@@ -22,6 +22,7 @@
 #include "Move.h"
 #include "AddLabel.h"
 #include "EditLabel.h"
+#include "EditConnection.h"
 #include "Actions\Probing.h"
 #include "Actions\DesignMode.h"
 // #include "Exit.h" // Commented out because "Exit.h" does not exist or is not needed
@@ -181,10 +182,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case EDIT_Label:
 			pAct = new EditLabel(this);
 			break;
+		
+		case EDIT_Connection:
+			pAct = new EditConnection(this);
+			break;
+
 		case PROBE: 
 			pAct = new Probing(this);
 			break;
-		case DESIGN_MODE: // Assuming this is the enum value in Defs.h
+		case DESIGN_MODE:
 			pAct = new DesignMode(this);
 			break;
 

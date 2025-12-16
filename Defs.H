@@ -32,6 +32,7 @@ enum ActionType
 
 	ADD_Label,			// Add Label to a Component or Connection
 	EDIT_Label,			// Edit Label of a Component or Connection
+	EDIT_Connection,	// Edit Input and Output of Connection
 	Start_Simulation,   // Start the simulation 
 	Create_TruthTable,	// Create Truth Table of the Circuit
 	Change_Switch,		// Change Switch Status in Simulation Mode
@@ -112,6 +113,7 @@ enum DsgnMenuItem //The items of the design menu (you should add more items)
 
 	ITM_ADD_LABEL,      // Add Label
 	ITM_EDIT_LABEL,     // Edit label
+	ITM_EDIT_CONNECTION, // Edit Connection INP or OUT
 
 	ITM_COPY,			// Copy a component
 	ITM_CUT,			// Cut a component
