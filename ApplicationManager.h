@@ -21,6 +21,7 @@ class ApplicationManager
 private:
 	int CompCount;		//Actual number of Components
 	int SelectedCount;
+	MODE AppMode;
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
 
 	Output* OutputInterface; //pointer to the Output Clase Interface
@@ -40,6 +41,9 @@ public:
 	
 	//Creates an action and executes it
 	void ExecuteAction(ActionType);
+	// MODE SWITCHING FUNCTIONS 
+	void SetAppMode(MODE mode);
+	MODE GetAppMode() const;
 	
 	void UpdateInterface();	//Redraws all the drawing window
 

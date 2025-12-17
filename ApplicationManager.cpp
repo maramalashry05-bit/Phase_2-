@@ -27,7 +27,6 @@
 #include "EditConnection.h"
 #include "Actions\Probing.h"
 #include "Actions\DesignMode.h"
-// #include "Exit.h" // Commented out because "Exit.h" does not exist or is not needed
 #include "Components/Connection.h"
 #include "Actions/Save.h"     
 #include "Actions/Load.h"      
@@ -35,12 +34,28 @@
 #include "Actions/Validation.h"
 #include "Switch.h"
 #include "Actions/Simulation.h"
+#include "SwitchToSimulation.h"
+
+
+
+// Implementation of SetAppMode (Declared in ApplicationManager.h)
+void ApplicationManager::SetAppMode(MODE mode)
+{
+	AppMode = mode;
+}
+
+// Implementation of GetAppMode (Declared in ApplicationManager.h)
+MODE ApplicationManager::GetAppMode() const
+{
+	return AppMode;
+}
 
 
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
 	SelectedCount = 0;
+	AppMode = DESIGN;
 	
 
 	for(int i=0; i<MaxCompCount; i++)
@@ -91,10 +106,13 @@ Component* ApplicationManager::GetClipboard() const
 
 void ApplicationManager::Exit()
 {
-	delete [] CompList;
+	for (int i = 0; i < CompCount; i++)
+		delete CompList[i];
+
 	delete OutputInterface;
 	delete InputInterface;
 }
+
 
 
 
@@ -173,21 +191,19 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = NULL;
 
 			// If the user is in Simulation Mode, we check if they clicked a switch
-			if (UI.AppMode == SIMULATION)
+			if (AppMode == SIMULATION)
 			{
-				// Get the component that was just selected/clicked
 				Component* pComp = GetSelectedComponent();
-
-				// Try to cast it to a Switch
 				Switch* pSw = dynamic_cast<Switch*>(pComp);
 
 				if (pSw)
 				{
-					pSw->Toggle();         // Flip the Switch (ON/OFF)
-					SimulateCircuit();     // Run the "Engine" to propagate the signal
-					UpdateInterface();     // Redraw so the LED changes color
+					pSw->Toggle();
+					SimulateCircuit();
+					UpdateInterface();
 				}
 			}
+
 		}
 			break;
 
@@ -260,11 +276,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 			break;
 
-		case SIM_MODE: // The action that switches from Design to Simulation
-		{
-			pAct = new Simulation(this); // You'll create this class
-		}
+		case SIM_MODE:
+			pAct = new SwitchToSimulation(this);
 			break;
+
 	}
 	if(pAct)
 	{
@@ -296,20 +311,11 @@ Output* ApplicationManager::GetOutput()
 {
 	return OutputInterface;
 }
-Component* ApplicationManager::Getcomponent(int index)
-{
-	for (int i=0; i < CompCount; i++)
-	{
-		if (i == index)
-		{
-			return(CompList[i]);
-		}
-	}
-}
 int ApplicationManager::GetComponentCount() 
 {
 	return CompCount;
 } 
+
 
 Component* ApplicationManager::GetComponent(int x, int y)
 {
@@ -320,8 +326,9 @@ Component* ApplicationManager::GetComponent(int x, int y)
 			return CompList[i];
 		}
 	}
-	return nullptr; // No component found at the given coordinates
+	return nullptr;
 }
+
 
 Component* ApplicationManager::GetOverlap(int x1, int y1, int x2, int y2)
 {
