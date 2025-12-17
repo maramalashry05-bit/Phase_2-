@@ -486,51 +486,47 @@ void ApplicationManager::ClearCircuit()
 
 bool ApplicationManager::ValidateCircuit() 
 {
-	// Iterate through all components
 	for (int i = 0; i < CompCount; i++)
 	{
 		Component* pComp = CompList[i];
 
 		if (!pComp || dynamic_cast<Connection*>(pComp))
-			continue; // Skip null components and connections
+			continue;
 
-		// Check Output Pins
-		OutputPin* pOutPin = pComp->GetOutputPin();
-
-		// Check if the component has an output pin (Gates and Switches have one)
-		if (pOutPin)
+		// Check Output Pins ---
+		// We skip LEDs because they are terminal components (no output)
+		if (!dynamic_cast<LED*>(pComp))
 		{
-			// If the output pin exists but has zero connections, it's a floating output.
-			// LEDs do NOT have output pins, so they are skipped by this check.
-			if (pOutPin->getConnCount() == 0)
+			OutputPin* pOutPin = pComp->GetOutputPin();
+			if (pOutPin && pOutPin->getConnCount() == 0)
 			{
-				GetOutput()->PrintMsg("Validation FAILED: Output pin of component " + pComp->GetLabel() + " is unconnected.");
+				GetOutput()->PrintMsg("Validation FAILED: Output pin of " + pComp->GetLabel() + " is unconnected.");
 				return false;
 			}
 		}
 
-		// Iterate through input pin indices 1, 2, 3...
-		// We'll iterate up to a high limit (e.g., 5) to safely cover all gate types.
-		for (int n = 1; n <= 5; n++)
+		// Check Input Pins ---
+		// We skip Switches because they are source components (no input)
+		if (!dynamic_cast<Switch*>(pComp))
 		{
-			InputPin* pInPin = pComp->GetInputPin(n);
-
-			// Check if the component has an input pin at this index
-			if (pInPin)
+		 
+			// Most gates have 2 or 3 inputs; LEDs have 1.
+			for (int n = 0; n < 3; n++)
 			{
-				// If the pin exists but has no connection, the circuit is invalid (floating input).
-				
-				if (!pInPin->getConnection())
+				InputPin* pInPin = pComp->GetInputPin(n);
+
+				if (pInPin) // If the component actually has a pin at this index
 				{
-					GetOutput()->PrintMsg("Validation FAILED: Input pin " + std::to_string(n) + " of component " + pComp->GetLabel() + " is unconnected.");
-					return false;
+					if (!pInPin->getConnection())
+					{
+						GetOutput()->PrintMsg("Validation FAILED: Input pin " + std::to_string(n) + " of " + pComp->GetLabel() + " is unconnected.");
+						return false;
+					}
 				}
 			}
 		}
 	}
-
-	// If the loop completes without finding any floating pins, the circuit is valid.
-	GetOutput()->PrintMsg("Circuit Validation SUCCESS! Ready for Simulation.");
+	GetOutput()->PrintMsg("Circuit is Valid! Starting Simulation...");
 	return true;
 }
 
