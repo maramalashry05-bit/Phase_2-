@@ -71,20 +71,20 @@ OutputPin* LED::GetOutputPin()
 // Single input pin handling
 int LED::GetInputPinStatus(int n)
 {
-    if (n == 1 && GetInputPin(1) != nullptr)
+    if (n == 0 && GetInputPin(1) != nullptr)
         return m_InputPins[0].getStatus();
     return -1;
 }
 
 void LED::setInputPinStatus(int n, STATUS s)
 {
-    if (n == 1)
+    if (n == 0)
         m_InputPins[0].setStatus(s);
 }
 
 InputPin* LED::GetInputPin(int n)
 {
-    if (n == 1)
+    if (n == 0)
         return &m_InputPins[0];
     return nullptr;
 }

@@ -75,7 +75,7 @@ void Switch::save(std::ofstream& outfile, int compid) const
 {
 
 
-    outfile << "led\t";
+    outfile << "SWT\t";
     outfile << compid << "\t";
     outfile << GetLabel() << "\t";
 
