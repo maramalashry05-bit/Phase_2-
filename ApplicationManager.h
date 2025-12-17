@@ -11,6 +11,8 @@
 // #include "Exit.h" // Commented out because "Exit.h" does not exist or is not needed
 #include "Actions\DesignMode.h"
 #include "Actions\Validation.h"
+//#include "GenerateTruthTable.h"
+
 
 //Main class that manages everything in the application.
 class ApplicationManager

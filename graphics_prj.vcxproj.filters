@@ -278,6 +278,12 @@
     <ClCompile Include="EditConnection.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\Simulation.cpp" />
+    <ClCompile Include="Cut.cpp" />
+    <ClCompile Include="SwitchToSimulation.cpp" />
+    <ClCompile Include="GenerateTruthTable.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -519,6 +525,12 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="EditConnection.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Simulation.h" />
+    <ClInclude Include="Cut.h" />
+    <ClInclude Include="SwitchToSimulation.h" />
+    <ClInclude Include="GenerateTruthTable.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

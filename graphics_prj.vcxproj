@@ -232,6 +232,7 @@
     <ClCompile Include="OR3.cpp" />
     <ClCompile Include="Paste.cpp" />
     <ClCompile Include="SelectAction.cpp" />
+    <ClCompile Include="GenerateTruthTable.cpp" />
     <ClCompile Include="Switch.cpp" />
     <ClCompile Include="SwitchToSimulation.cpp" />
     <ClCompile Include="XNOR2.cpp" />
@@ -317,6 +318,7 @@
     <ClInclude Include="GUI\Input.h" />
     <ClInclude Include="GUI\Output.h" />
     <ClInclude Include="GUI\UI_Info.h" />
+    <ClInclude Include="GenerateTruthTable.h" />
     <ClInclude Include="INV.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="LED.h" />

@@ -28,6 +28,8 @@ enum ActionType
 
 	ADD_Switch,			// Add Switch
 	ADD_LED,			// Add LED
+	/*GENERATE_TRUTH_TABLE*/ // new action type
+
 	ADD_CONNECTION,		// Add Wire Connection
 
 	ADD_Label,			// Add Label to a Component or Connection
@@ -71,6 +73,8 @@ enum ActionType
 
 	DSN_TOOL,			// A click on an empty place in the design tool bar
 	SIM_TOOL			// A click on an empty place in the simulation tool bar
+
+
 
 };
 

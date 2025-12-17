@@ -206,6 +206,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		}
 			break;
+		/*case GENERATE_TRUTH_TABLE:
+		{
+			GenerateTruthTable* pTT = new GenerateTruthTable(this);
+			pTT->Execute();
+			delete pTT;
+			break;
+		}
+*/
 
 		case DEL:
 			pAct = new Delete (this);
