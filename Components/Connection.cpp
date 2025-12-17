@@ -52,8 +52,11 @@ void Connection::load(std::ifstream& infile)
 
 void Connection::Operate()
 {
-	//Status of connection destination pin = status of connection source pin
-	DstPin->setStatus((STATUS)SrcPin->getStatus());
+	// Only transfer status if both pins exist to avoid crashes
+	if (SrcPin && DstPin)
+	{
+		DstPin->setStatus((STATUS)SrcPin->getStatus());
+	}
 }
 
 void Connection::Draw(Output* pOut)

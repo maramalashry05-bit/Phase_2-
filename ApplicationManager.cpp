@@ -33,6 +33,8 @@
 #include "Actions/Load.h"      
 #include <fstream>
 #include "Actions/Validation.h"
+#include "Switch.h"
+#include "Actions/Simulation.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -162,7 +164,31 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 	
 		case SELECT:
+		{
 			pAct = new SelectAction(this);
+			pAct->Execute();
+
+			// We must delete the action here because we are inside the case
+			delete pAct;
+			pAct = NULL;
+
+			// If the user is in Simulation Mode, we check if they clicked a switch
+			if (UI.AppMode == SIMULATION)
+			{
+				// Get the component that was just selected/clicked
+				Component* pComp = GetSelectedComponent();
+
+				// Try to cast it to a Switch
+				Switch* pSw = dynamic_cast<Switch*>(pComp);
+
+				if (pSw)
+				{
+					pSw->Toggle();         // Flip the Switch (ON/OFF)
+					SimulateCircuit();     // Run the "Engine" to propagate the signal
+					UpdateInterface();     // Redraw so the LED changes color
+				}
+			}
+		}
 			break;
 
 		case DEL:
@@ -217,6 +243,27 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case EXIT:
 			///TODO: create ExitAction here
+			break;
+
+		case Change_Switch:
+		{	// This handles the user clicking the specific tool in the toolbar
+			// We reuse the SimulateCircuit logic
+			int x, y;
+			InputInterface->GetPointClicked(x, y);
+			Component* pComp = GetComponent(x, y);
+			Switch* pSw = dynamic_cast<Switch*>(pComp);
+			if (pSw) {
+				pSw->Toggle();
+				SimulateCircuit();
+				UpdateInterface();
+			}
+		}
+			break;
+
+		case SIM_MODE: // The action that switches from Design to Simulation
+		{
+			pAct = new Simulation(this); // You'll create this class
+		}
 			break;
 	}
 	if(pAct)
@@ -472,7 +519,28 @@ bool ApplicationManager::ValidateCircuit()
 	return true;
 }
 
-
+void ApplicationManager::SimulateCircuit()
+{
+	// We loop multiple times to allow signals to propagate 
+	// from Switches through Gates to LEDs.
+	// Why loop 5 times? 
+	//  1: Switch sets its Pin.
+	//  2: Connection reads Switch Pin and sets Gate/LED Pin.
+	//  3: Gate reads its Input Pins and sets its Output Pin.
+	//  4: Next Connection carries Gate output to LED.
+	//  5: LED reads its Input Pin and turns ON.
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < CompCount; j++)
+		{
+			if (CompList[j])
+			{
+				// Polymorphically call Operate for each component.
+				CompList[j]->Operate();
+			}
+		}
+	}
+}
 
 
 

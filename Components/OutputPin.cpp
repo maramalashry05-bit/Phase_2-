@@ -1,6 +1,7 @@
 #include "OutputPin.h"
 #include "Connection.h"
 
+
 OutputPin::OutputPin(int r_FanOut)
 {
 	m_Conn = 0;		//initially Pin is not connected to anything.
@@ -72,3 +73,10 @@ void OutputPin::UnconnectAll()
 	m_Conn = 0;
 }
 
+void OutputPin::setStatus(STATUS s) {
+	m_Status = s;
+}
+
+STATUS OutputPin::getStatus() {
+	return m_Status;
+}

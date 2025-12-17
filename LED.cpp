@@ -12,10 +12,8 @@ LED::LED(const GraphicsInfo& r_GfxInfo, int r_FanOut) : Gate(1, 0) , m_isOn(fals
 
 void LED::Operate()
 {
-    // LED does not drive any outputs. Its state is purely visual:
-    // read its single input pin and update the internal visual flag.
-    if (GetInputPin(1) != nullptr)
-        m_isOn = (GetInputPinStatus(1) == HIGH);
+    if (GetInputPin(0) != nullptr)
+        m_isOn = (GetInputPinStatus(0) == HIGH);
     else
         m_isOn = false;
 }

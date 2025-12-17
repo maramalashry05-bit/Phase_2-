@@ -24,6 +24,7 @@ void Switch::Draw(Output* pOut)
     pOut->DrawSwitch(m_GfxInfo, isSelected,m_State);
 }
 
+
 int Switch::GetOutPinStatus()
 {
     return m_OutputPin.getStatus();

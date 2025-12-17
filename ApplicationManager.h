@@ -43,6 +43,9 @@ public:
 	
 	void UpdateInterface();	//Redraws all the drawing window
 
+	void SimulateCircuit();
+
+
 	//Gets a pointer to Input / Output Object
 	Output* GetOutput();
 	Component* Getcomponent(int index);

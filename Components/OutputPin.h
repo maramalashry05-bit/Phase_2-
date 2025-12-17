@@ -28,6 +28,8 @@ public:
     int getConnCount() const;
     Connection** getConnections();
     void UnconnectAll();
+    void setStatus(STATUS s);
+    STATUS getStatus();
 };
 
 #endif
