@@ -66,21 +66,42 @@ void EditConnection::Execute()
         conn->setSourcePin(newSrcPin);
 
         // Update graphics for connection endpoints
-        GraphicsInfo srcGfx = newSrc->GetGraphicsInfo();
-        GraphicsInfo dstGfx = conn->getDestPin()->getComponent()->GetGraphicsInfo();
+        // Be defensive: destination component or pin may be missing — fall back to preserving existing endpoint
         GraphicsInfo gfx;
-        gfx.x1 = srcGfx.x2;
-        gfx.y1 = (srcGfx.y1 + srcGfx.y2) / 2;
-        gfx.x2 = dstGfx.x1;
-        gfx.y2 = (dstGfx.y1 + dstGfx.y2) / 2;
+        GraphicsInfo dstGfx;
+        bool haveDstGfx = false;
+
+        if (conn->getDestPin() && conn->getDestPin()->getComponent())
+        {
+            dstGfx = conn->getDestPin()->getComponent()->GetGraphicsInfo();
+            haveDstGfx = true;
+        }
+
+        GraphicsInfo srcCompGfx = newSrc->GetGraphicsInfo();
+        gfx.x1 = srcCompGfx.x2;
+        gfx.y1 = (srcCompGfx.y1 + srcCompGfx.y2) / 2;
+
+        if (haveDstGfx)
+        {
+            gfx.x2 = dstGfx.x1;
+            gfx.y2 = (dstGfx.y1 + dstGfx.y2) / 2;
+        }
+        else
+        {
+            // preserve previous end point if dest component info is missing
+            GraphicsInfo old = conn->GetGraphicsInfo();
+            gfx.x2 = old.x2;
+            gfx.y2 = old.y2;
+        }
+
         conn->SetGraphicsInfo(gfx);
         pManager->UpdateInterface();
         pOut->PrintMsg("Connection source updated.");
     }
     else
     {
-        // Change destination: user clicks the new destination gate then enters input pin index
-        pOut->PrintMsg("Click on the gate to be the new DESTINATION (must have input pins) or ESC to cancel.");
+        // Change destination: user clicks the new destination gate then automatically assign any open input pin
+        pOut->PrintMsg("Click on the gate to be the new DESTINATION (will auto-assign an open input pin) or ESC to cancel.");
         pIn->GetPointClicked(x, y);
         pOut->ClearStatusBar();
 
@@ -91,43 +112,52 @@ void EditConnection::Execute()
             return;
         }
 
-        // Ask for input pin number (1-based)
-        pOut->PrintMsg("Enter input pin number (1..n) for the selected gate or ESC to cancel:");
-        std::string pinStr = pIn->GetSrting(pOut);
-        pOut->ClearStatusBar();
-        if (pinStr.empty())
+        // Find first available (not connected) input pin. Components use 1-based indexing for pins.
+        InputPin* availablePin = nullptr;
+        for (int pinIndex = 1; ; ++pinIndex)
         {
-            pOut->PrintMsg("Edit cancelled.");
+            InputPin* pin = newDst->GetInputPin(pinIndex);
+            if (!pin)
+                break; // no more pins
+            if (!pin->isConnected())
+            {
+                availablePin = pin;
+                break;
+            }
+        }
+
+        if (!availablePin)
+        {
+            pOut->PrintMsg("No available input pins on selected gate. Edit cancelled.");
             return;
         }
 
-        int pinIndex = 0;
-        try { pinIndex = std::stoi(pinStr); }
-        catch (...)
-        {
-            pOut->PrintMsg("Invalid pin number. Edit cancelled.");
-            return;
-        }
-
-        InputPin* newDstPin = newDst->GetInputPin(pinIndex);
-        if (!newDstPin)
-        {
-            pOut->PrintMsg("Invalid input pin index. Edit cancelled.");
-            return;
-        }
-
-        conn->setDestPin(newDstPin);
+        conn->setDestPin(availablePin);
 
         // Update graphics for connection endpoints
-        GraphicsInfo srcGfx = conn->getSourcePin()->getComponent()->GetGraphicsInfo();
-        GraphicsInfo dstGfx = newDst->GetGraphicsInfo();
+        // Be defensive: source component/pin may be missing — fall back to preserving previous start point
         GraphicsInfo gfx;
-        gfx.x1 = srcGfx.x2;
-        gfx.y1 = (srcGfx.y1 + srcGfx.y2) / 2;
+        GraphicsInfo dstGfx = newDst->GetGraphicsInfo();
+
+        if (conn->getSourcePin() && conn->getSourcePin()->getComponent())
+        {
+            GraphicsInfo srcGfx = conn->getSourcePin()->getComponent()->GetGraphicsInfo();
+            gfx.x1 = srcGfx.x2;
+            gfx.y1 = (srcGfx.y1 + srcGfx.y2) / 2;
+        }
+        else
+        {
+            // preserve previous start point if source component info is missing
+            GraphicsInfo old = conn->GetGraphicsInfo();
+            gfx.x1 = old.x1;
+            gfx.y1 = old.y1;
+        }
+
         gfx.x2 = dstGfx.x1;
         gfx.y2 = (dstGfx.y1 + dstGfx.y2) / 2;
+
         conn->SetGraphicsInfo(gfx);
         pManager->UpdateInterface();
-        pOut->PrintMsg("Connection destination updated.");
+        pOut->PrintMsg("Connection destination updated (auto-assigned input pin).");
     }
 }

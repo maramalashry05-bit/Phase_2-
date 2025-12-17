@@ -1,7 +1,0 @@
-4
-BUFF	1		604 240
-XNOR3	2		610 355
-XNOR2	3		725 287
-XOR2	4		515 295
-Connections
--1
