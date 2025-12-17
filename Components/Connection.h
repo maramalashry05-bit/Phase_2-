@@ -5,6 +5,7 @@
 #include <fstream> 
 #include <string>
 
+class ApplicationManager;
 class Connection : public Component
 {
 	Component* SrcCmpnt;	//Connection source component
@@ -19,7 +20,7 @@ public:
 	virtual void Draw(Output* pOut);	//for each component to Draw itself
 
 	virtual void save(std::ofstream& outfile, int compid) const;
-	virtual void load(std::ifstream& infile);
+	virtual void load(std::ifstream& infile, ApplicationManager* pManager);
 
 	
 	void setSourcePin(OutputPin *pSrcPin);

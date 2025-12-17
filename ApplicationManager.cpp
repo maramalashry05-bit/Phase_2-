@@ -405,41 +405,41 @@ void ApplicationManager::SaveAll(std::ofstream& OutFile) const
     }
     OutFile << -1 << std::endl; //terminator
 }
-void ApplicationManager::LoadAll(std::ifstream& InFile)
+void ApplicationManager::LoadAll(std::ifstream& inFile)
 {
 	
 
 	// Load Components (Gates/LEDs/Switches)
 	int CompCountFromFile;
-	InFile >> CompCountFromFile;
+	inFile >> CompCountFromFile;
 
 	std::string CompType;
 	for (int i = 0; i < CompCountFromFile; i++)
 	{
-		InFile >> CompType;
+		inFile >> CompType;
 		Component* pComp = nullptr;
 		GraphicsInfo GfxInfo; 
 
 		
 		if (CompType == "AND2") pComp = new AND2(GfxInfo, 1);
-		else if (CompType == "OR2") pComp = new OR2(GfxInfo,1);
+		else if (CompType == "SWT") pComp = new Switch(GfxInfo);
 		else if (CompType == "LED") pComp = new LED(GfxInfo,1);
 
 
 		if (pComp)
 		{
-			pComp->load(InFile);
+			pComp->load(inFile);
 			AddComponent(pComp);
 		}
 	}
 
 	// Load Connections
-	InFile >> CompType; // Reads "Connections"
+	inFile >> CompType; // Reads "Connections"
 
 	int SrcID, DstID, PinNum;
-	while (InFile >> SrcID && SrcID != -1)
+	while (inFile >> SrcID && SrcID != -1)
 	{
-		InFile >> DstID >> PinNum;
+		inFile >> DstID >> PinNum;
 
 		Component* pSrcComp = FindComponentByID(SrcID);
 		Component* pDstComp = FindComponentByID(DstID);

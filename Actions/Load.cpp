@@ -6,7 +6,7 @@
 #include <iostream>
 
 std::string filename;
-Load::Load(ApplicationManager* papp) : Action(papp)
+Load::Load(ApplicationManager* pApp) : Action(pApp)
 {
     filename = "";
 }
@@ -46,4 +46,5 @@ void Load::Execute()
     pManager->LoadAll(infile);
 
     infile.close();
-    pManager->GetOutput()->PrintMsg("circuit loaded successfully from " + filename + ".txt");}
+    pManager->GetOutput()->PrintMsg("circuit loaded successfully from " + filename + ".txt");
+}

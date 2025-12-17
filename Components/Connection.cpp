@@ -1,4 +1,5 @@
 #include "Connection.h"
+#include "../ApplicationManager.h"
 #include <fstream>
 
 Connection::Connection(const GraphicsInfo &r_GfxInfo, OutputPin *pSrcPin,InputPin *pDstPin):Component(r_GfxInfo)
@@ -44,9 +45,18 @@ void Connection::save(std::ofstream& outfile, int compID) const
     outfile << pinNum << std::endl;
 }
 
-void Connection::load(std::ifstream& infile)
+void Connection::load(std::ifstream& infile, ApplicationManager* pManager)
 {
+	int srcID, dstID, pinNum;
+	infile >> srcID >> dstID >> pinNum;
 
+	// Use ApplicationManager to find the components by their IDs
+	Component* src = pManager->FindComponentByID(srcID);
+	Component* dst = pManager->FindComponentByID(dstID);
+
+	// Link the pins
+	SrcPin = src->GetOutputPin();
+	DstPin = dst->GetInputPin(pinNum);
 }
 
 
